@@ -1,10 +1,10 @@
 import React from "react";
+import Users from './Components/Test/index';
+//import Firebase, { FirebaseContext } from '../components/firebase';
 
 const Homepage = () => {
     return(
-        <>
-            <h1 className="text-4xl">Homepage</h1>
-        </>
+        <Users />
     );
 };
 
