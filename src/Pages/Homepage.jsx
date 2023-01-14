@@ -1,6 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 const Homepage = () => {
+
+    const codeValid = () => {
+        //check if the code is valid in Firebase
+    };
+
     return(
         <div>
             <h1 className="text-green-500 text-4xl">Have a Coffee on Us</h1>
@@ -12,4 +17,4 @@ const Homepage = () => {
     );
 };
 
-export default Homepage;
+export default Homepage; 

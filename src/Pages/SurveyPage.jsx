@@ -20,6 +20,7 @@ const SurveyPage = () => {
     ];
 
     const handleSubmit = () => {
+        //Firebase stuff to handle data
         Navigate("/SurveyComplete");
     }
 
