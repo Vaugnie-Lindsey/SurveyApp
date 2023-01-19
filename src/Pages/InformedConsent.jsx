@@ -16,16 +16,16 @@ const InformedConsent = () => {
     AssignId();
 
     return(
-        <div className="flex flex-col justify-center items-center">
-            <h1>Informed Consent</h1>
+        <div className="flex flex-col justify-center items-center min-h-screen dark:bg-slate-900 dark:text-white">
+            <h1 className="text-green-500 text-4xl">Informed Consent</h1>
             <p>Blah blah blah</p>
             <div>
                 <label>Check to confirm that you consent</label>
-                <input id="consent" type="checkbox"></input>
+                <input id="consent" type="checkbox" className="accent-green-500"></input>
             </div>
             {/* {document.getElementById("consent").checked && */}
             <Link to="/SurveyPage">
-                <button>Continue</button>
+                <button className="bg-green-500 text-white rounded-sm pl-1 pr-1">Continue</button>
             </Link>
         </div>
     );

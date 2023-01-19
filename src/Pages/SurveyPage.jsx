@@ -55,7 +55,7 @@ const SurveyPage = () => {
     }
 
     return(
-        <div className="w-screen flex items-center justify-center dark:bg-slate-900 dark:text-white">
+        <div className="w-screen flex items-center justify-center dark:bg-slate-900 dark:text-white min-h-screen">
             <div className="flex flex-col gap-10 pt-16 pb-16 w-3/5">
                 <div>
                     <h1 className="text-bold text-4xl">Background</h1>

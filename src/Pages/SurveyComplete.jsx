@@ -12,7 +12,7 @@ const SurveyComplete = () => {
     }
 
     return(
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center min-h-screen">
             <h1>The survey is now complete!</h1>
             <p>Thank you for participating in our survey. We ask that you use one if the methods below to share the link with a friend or family member. For each person that you share it to (up to three) you recieve and additional payout.</p>
             <button onClick={() => openShare()}>Share Link</button>
