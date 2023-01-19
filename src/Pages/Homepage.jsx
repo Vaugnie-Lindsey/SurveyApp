@@ -7,11 +7,11 @@ const Homepage = () => {
     };
 
     return(
-        <div>
+        <div className="flex flex-col justify-center items-center gap-5">
             <h1 className="text-green-500 text-4xl">Have a Coffee on Us</h1>
-            <input className="border border-red-500" placeholder="Please input your referal code here"></input>
+            <input className="border-2 border-red-500 p-1 rounded-md" placeholder="Please input your referal code here"></input>
             <Link to="/InformedConsent">
-                <button>Continue</button>
+                <button className="bg-red-500 rounded-md text-white pl-1 pr-1">Continue</button>
             </Link>
         </div>
     );
