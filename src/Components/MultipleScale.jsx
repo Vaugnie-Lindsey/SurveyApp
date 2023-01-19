@@ -4,7 +4,7 @@ import ScaleQuestion from "./ScaleQuestion";
 const MultipleScale = (props) => {
     const questions = props.options.map((answer, index) =>
     <div key={index}>
-        <ScaleQuestion question={answer} />
+        <ScaleQuestion question={answer.question} name={answer.name}/>
     </div>
     )
     return (

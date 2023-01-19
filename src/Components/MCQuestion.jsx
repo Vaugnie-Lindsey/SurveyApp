@@ -1,10 +1,12 @@
 import React from "react";
 
 const MCQuestion = (props) => {
+    console.log(props.name);
     const questions = props.options.map((answer, index) =>
     <div key={index}>
-        <input type="radio" value={answer}></input>
-        <label>{answer}</label>
+        <input type="radio" value={answer} className="accent-red-500" name={props.name}></input>
+        <label className="ml-2">{answer}</label>
+        {/* {true && <input type="text" placeholder="this is text"></input>} */}
     </div>
     )
     return (
