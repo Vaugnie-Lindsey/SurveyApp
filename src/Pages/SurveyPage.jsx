@@ -55,18 +55,18 @@ const SurveyPage = () => {
     }
 
     return(
-        <>
-            <div className="flex flex-col gap-10 p-16">
+        <div className="w-screen flex items-center justify-center dark:bg-slate-900 text-white">
+            <div className="flex flex-col gap-10 pt-16 pb-16 w-3/5">
                 <div>
                     <h1 className="text-bold text-4xl">Background</h1>
-                    <div className="w-auto h-1 bg-black"></div>
+                    <div className="w-auto h-1 bg-black dark:bg-white"></div>
                 </div>
                 <NumberQuestion question="1. What is your age?"/>
                 <MCQuestion options={["Male", "Female", "Other"]} question="2. What is your gender?" name="gender"/>
                 <MCQuestion options={["White", "Black / African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Other (Please Specify)"]} question="3. What is your ethnicity/demographic" name="ethnicity"/>
                 <MCQuestion options={["Yes", "No"]} question="4. Are you a student" name="student"/>
-                <MCQuestion options={["Astronomy", "Biology", "Chemistry", "Physics", "Computer Science", "Computer Engineering", "Mathematics / Statistician", "Civil Engineering", "Electrical Engineering", "Industrial Engineering", "Other (specify)"]} question="5. What field of STEM are you currently working or studying in?" name="field"/>
-                <MCQuestion options={["Working towards Bachelor's", "Bachelor's", "Working towards Master's", "Master's ", "Working towards Doctorate", "Doctoral", "No Degree", "Other (specify)"]} question="6. What is the highest degree you hold or are currently working towards?" name="degree"/>
+                <MCQuestion options={["Astronomy", "Biology", "Chemistry", "Physics", "Computer Science", "Computer Engineering", "Mathematics / Statistician", "Civil Engineering", "Electrical Engineering", "Industrial Engineering", "Other (Please Specify)"]} question="5. What field of STEM are you currently working or studying in?" name="field"/>
+                <MCQuestion options={["Working towards Bachelor's", "Bachelor's", "Working towards Master's", "Master's ", "Working towards Doctorate", "Doctoral", "No Degree", "Other (Please Specify)"]} question="6. What is the highest degree you hold or are currently working towards?" name="degree"/>
                 <NumberQuestion question="7. How many years have you been working in a STEM related field?"/>
                 <div>
                     <h1 className="text-bold text-4xl">Experiences</h1>
@@ -89,7 +89,7 @@ const SurveyPage = () => {
                 <MultipleScale options={finalQues} question="17. The following factor influenced your decision to study your major / degree:" name="factors"/>
                 <button className="bg-red-500 rounded-sm w-1/5 text-white" onClick={() => handleSubmit()}>Submit</button>
             </div>
-        </>
+        </div>
     );
 };
 
