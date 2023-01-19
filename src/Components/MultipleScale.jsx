@@ -9,8 +9,9 @@ const MultipleScale = (props) => {
     )
     return (
         <div>
-            <h2 className="font-bold">{props.question}</h2>
-            <div className="flex flex-col gap-5">
+            <h2 className="font-bold text-lg dark:text-green-500 ">{props.question}</h2>
+            <br></br>
+            <div className="flex flex-col gap-5 ml-10">
                 {questions}
             </div>
         </div>

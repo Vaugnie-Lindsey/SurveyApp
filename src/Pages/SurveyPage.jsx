@@ -55,7 +55,7 @@ const SurveyPage = () => {
     }
 
     return(
-        <div className="w-screen flex items-center justify-center dark:bg-slate-900 text-white">
+        <div className="w-screen flex items-center justify-center dark:bg-slate-900 dark:text-white">
             <div className="flex flex-col gap-10 pt-16 pb-16 w-3/5">
                 <div>
                     <h1 className="text-bold text-4xl">Background</h1>
@@ -70,9 +70,9 @@ const SurveyPage = () => {
                 <NumberQuestion question="7. How many years have you been working in a STEM related field?"/>
                 <div>
                     <h1 className="text-bold text-4xl">Experiences</h1>
-                    <div className="w-auto h-1 bg-black"></div>
+                    <div className="w-auto h-1 bg-black dark:bg-white"></div>
                 </div>
-                <MCQuestion options={["Elementary school", "Middle school", "High school", "Other (specify)"]} question="8. When would you say you decided you wanted to pursue a STEM career?" name="education"/>
+                <MCQuestion options={["Elementary school", "Middle school", "High school", "Other (Please Specify)"]} question="8. When would you say you decided you wanted to pursue a STEM career?" name="education"/>
                 <MCQuestion options={["Yes", "No"]} question="9. Do you have a mother or female guardian in the STEM field?" name="mother"/>
                 <MCQuestion options={["Yes", "No"]} question="10. Do you have a father or male guardian in the STEM field?" name="father"/>
                 <MCQuestion options={["Yes", "No"]} question="11. Do you perceive your STEM field as shifting away from being male-dominated?" name="dominated"/>
@@ -80,7 +80,7 @@ const SurveyPage = () => {
                 <MCQuestion options={["Yes", "No"]} question="13. Are you involved with STEM clubs or organizations outside the classroom or workplace?" name="clubs"/>
                 <div>
                     <h1 className="text-bold text-4xl">Scale</h1>
-                    <div className="w-auto h-1 bg-black"></div>
+                    <div className="w-auto h-1 bg-black dark:bg-white"></div>
                     <p>Please indicate how much you agree with each following statement:</p>
                 </div>
                 <ScaleQuestion question="14. I feel I am not treated equally or fairly in your field based on gender." name="equal"/>

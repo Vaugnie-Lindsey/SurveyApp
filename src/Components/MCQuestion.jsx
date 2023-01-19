@@ -20,14 +20,14 @@ const MCQuestion = (props) => {
 
     const questions = props.options.map((answer, index) =>
     <div key={index}>
-        <input type="radio" value={answer} className="accent-red-500 text-black" name={props.name} onChange={(answer) => handleChange(answer)}></input>
+        <input type="radio" value={answer} className="accent-green-500 text-black border border-green-400" name={props.name} onChange={(answer) => handleChange(answer)}></input>
         <label className="ml-2">{answer}</label>
         {checkForOther(answer) && <><br></br><input placeholder="this is input" className="dark:text-black border border-green-500 rounded-md focus:border-2 focus:border-red-500 pr-1 pl-1" disabled={showOption}></input></>}
     </div>
     )
     return (
         <div>
-            <h2 className="font-bold">{props.question}</h2>
+            <h2 className="font-bold text-lg dark:text-green-500">{props.question}</h2>
             {questions}
         </div>
     );
