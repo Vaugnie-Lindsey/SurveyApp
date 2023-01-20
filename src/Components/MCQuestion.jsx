@@ -3,13 +3,14 @@ import React, {useState} from "react";
 const MCQuestion = (props) => {
     const [showOption, setShowOption] = useState(true);
     const [focus, SetFocus] = useState(false);
+    const inputName = props.name + "1";
     const handleChange = (answer) => {
         if (answer.target.value == "Other (Please Specify)") {
             setShowOption(false);
         } else {
             setShowOption(true);
         }
-        document.getElementById(answer.target.value).focus();
+        // document.getElementById(answer.target.value).focus();
     }
 
     const checkForOther = (answer) => {
@@ -24,7 +25,7 @@ const MCQuestion = (props) => {
     <div key={index}>
         <input type="radio" value={answer} className="accent-green-500 text-black border border-green-400" name={props.name} onChange={(answer) => handleChange(answer)}></input>
         <label className="ml-2">{answer}</label>
-        {checkForOther(answer) && <><br></br><input id={answer} placeholder="this is input" className="dark:text-black border border-green-500 rounded-md focus:border-2 focus:border-red-500 pr-1 pl-1" disabled={showOption}></input></>}
+        {checkForOther(answer) && <><br></br><input id={answer} placeholder="this is input" className="dark:text-black border border-green-500 rounded-md focus:border-2 focus:border-red-500 pr-1 pl-1" disabled={showOption} name={inputName}></input></>}
     </div>
     )
     return (
