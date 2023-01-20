@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 const Homepage = () => {
 
     const codeValid = () => {
         //check if the code is valid in Firebase
     };
+    const [queryParameters] = useSearchParams();
+    console.log(queryParameters.get('code'));
 
     return(
         <div className="flex flex-col justify-center items-center gap-5 dark:bg-slate-900 dark:text-white min-h-screen">

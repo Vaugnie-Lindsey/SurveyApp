@@ -13,7 +13,7 @@ const ScaleQuestion = (props) => {
     return (
         <div>
             <h2 className="font-bold text-lg dark:text-green-500">{props.question}</h2>
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-col md:flex-row gap-2">
             {questions}
             </div>
         </div>

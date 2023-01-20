@@ -18,6 +18,25 @@ const InformedConsent = () => {
     return(
         <div className="flex flex-col justify-center items-center min-h-screen dark:bg-slate-900 dark:text-white">
             <h1 className="text-green-500 text-4xl">Informed Consent</h1>
+            <h2>How were you referred here?</h2>
+            <div>
+                <input type="radio" value="Text" name="refer"></input>
+                <label>Text</label>
+            </div>
+            <div>
+                <input type="radio" value="Email" name="refer"></input>
+                <label>Email</label>
+            </div>
+            <div>
+                <input type="radio" value="Social Media" name="refer"></input>
+                <label>Social Media</label>
+            </div>
+            <div>
+                <input type="radio" value="Other" name="refer"></input>
+                <label>Other</label>
+                <br></br>
+                <input type="text"></input>
+            </div>
             <p>Blah blah blah</p>
             <div>
                 <label>Check to confirm that you consent</label>
