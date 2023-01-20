@@ -61,6 +61,7 @@ const SurveyPage = () => {
                     <h1 className="text-bold text-4xl">Background</h1>
                     <div className="w-auto h-1 bg-black dark:bg-white"></div>
                 </div>
+                <MCQuestion options={["Text", "Email", "Social Media", "Other (Please Specify)"]} question="How were you referred here?" name="refer"/>
                 <NumberQuestion question="1. What is your age?"/>
                 <MCQuestion options={["Male", "Female", "Other"]} question="2. What is your gender?" name="gender"/>
                 <MCQuestion options={["White", "Black / African American", "Asian", "American Indian or Alaska Native", "Native Hawaiian or Other Pacific Islander", "Other (Please Specify)"]} question="3. What is your ethnicity/demographic" name="ethnicity"/>

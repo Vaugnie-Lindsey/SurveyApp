@@ -5,6 +5,7 @@ const Homepage = () => {
     const codeValid = () => {
         //check if the code is valid in Firebase
     };
+
     const [queryParameters] = useSearchParams();
     console.log(queryParameters.get('code'));
 
