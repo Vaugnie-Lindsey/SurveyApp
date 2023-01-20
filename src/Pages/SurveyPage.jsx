@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import MCQuestion from "../Components/MCQuestion";
 import NumberQuestion from "../Components/NumberQuestion";
 import ScaleQuestion from "../Components/ScaleQuestion";
