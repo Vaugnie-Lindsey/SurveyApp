@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const InformedConsent = () => {
+  const navigate = useNavigate();
   const AssignId = () => {
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
@@ -9,12 +10,16 @@ const InformedConsent = () => {
         .map(() => Math.floor(Math.random() * 16).toString(16))
         .join("");
 
-    console.log(genRanHex(6));
-    console.log(genRanHex(8));
+    //const docRef = doc(db, "collection", "document");
+    //const 
+    let userCode = genRanHex(6);
+    let url = `/SurveyPage?code=${userCode}`;
+    navigate(url);
+    // console.log(genRanHex(8));
+
   };
 
   // console.log(document.getElementById("consent").checked);
-  AssignId();
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen dark:bg-slate-900 dark:text-white p-16">
@@ -68,11 +73,11 @@ const InformedConsent = () => {
         ></input>
       </div>
       {/* {document.getElementById("consent").checked && */}
-      <Link to="/SurveyPage">
-        <button className="bg-green-500 text-white rounded-sm pl-1 pr-1">
+      {/* <Link to="/SurveyPage"> */}
+        <button className="bg-green-500 text-white rounded-sm pl-1 pr-1" onClick={() => AssignId()}>
           Continue
         </button>
-      </Link>
+      {/* </Link> */}
     </div>
   );
 };

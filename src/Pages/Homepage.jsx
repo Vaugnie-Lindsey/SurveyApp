@@ -3,6 +3,9 @@ import { Link, useSearchParams } from "react-router-dom";
 const Homepage = () => {
   const codeValid = () => {
     //check if the code is valid in Firebase
+    //const docRef = doc(db, "collection", "ValidCodes");
+    //const 
+
   };
 
   const [queryParameters] = useSearchParams();

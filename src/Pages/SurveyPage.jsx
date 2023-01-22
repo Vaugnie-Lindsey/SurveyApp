@@ -3,10 +3,11 @@ import MCQuestion from "../Components/MCQuestion";
 import NumberQuestion from "../Components/NumberQuestion";
 import ScaleQuestion from "../Components/ScaleQuestion";
 import MultipleScale from "../Components/MultipleScale";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 
 const SurveyPage = () => {
   const navigate = useNavigate();
+  const [queryParameters] = useSearchParams();
   const finalQues = [
     {
       question: "Your mother or female guardian:",
@@ -56,7 +57,12 @@ const SurveyPage = () => {
     let formObject = Object.fromEntries(data.entries());
     console.log(formObject);
     //Firebase stuff to handle data
-    navigate("/SurveyComplete");
+    // const docRef = await doc(db, "collection", "document");
+    // await setDoc = (docRef, {
+    //   responses: formObject
+    // })
+    console.log(queryParameters.get("code"));
+    navigate(`/SurveyComplete?code=${queryParameters.get("code")}`);
   };
 
   return (

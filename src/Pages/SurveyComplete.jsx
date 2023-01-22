@@ -1,10 +1,13 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 
 const SurveyComplete = () => {
+  const [queryParameters] = useSearchParams();
+  const url = `http://localhost:3000/?code=${queryParameters.get("code")}`;
   const shareData = {
     title: "Women In STEM Study",
     text: "Earn up to $10!",
-    url: "http://localhost:3000/?code=3453",
+    url: url,
   };
 
   const openShare = () => {
@@ -30,7 +33,7 @@ const SurveyComplete = () => {
       </button>
       <h3>If the button above doesnt work copy this link:</h3>
       <div className="pl-2 pr-2 pt-1 pb-1 border-2 border-blue-400 rounded-md">
-        <p>http://localhost:3000/?code=1234</p>
+        <p>{url}</p>
       </div>
       <p>...And send it through text, email, or social media!</p>
     </div>
