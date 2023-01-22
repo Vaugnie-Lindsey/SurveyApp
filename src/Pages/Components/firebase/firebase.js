@@ -1,9 +1,9 @@
 // Import the functions you need from the SDKs you need
 
-import app from "firebase/compat/app";
+import app from 'firebase/app';
 import 'firebase/database';
 
-const config = {
+const firebaseConfig = {
 
   apiKey: "AIzaSyAgrP-7gwQBGV51hOKloy_mU6SC1KyP2j0",
 
@@ -21,21 +21,12 @@ const config = {
 
 };
 
+ 
 class Firebase {
   constructor() {
     app.initializeApp(config);
     this.db = app.database();
   }
-  
-  //API routes
-  users = () => this.db.ref('users');
  }
   
  export default Firebase;
-
-
-
-// Initialize Firebase
-
-//const app = initializeApp(firebaseConfig);
-
