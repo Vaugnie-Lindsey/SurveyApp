@@ -19,7 +19,7 @@ const Homepage = () => {
         placeholder="Please input your referal code here"
       ></input>
       <Link to="/InformedConsent">
-        <button className="bg-green-500 rounded-md text-white pl-1 pr-1">
+        <button className="bg-green-500 rounded-md text-white p-3">
           Continue
         </button>
       </Link>
