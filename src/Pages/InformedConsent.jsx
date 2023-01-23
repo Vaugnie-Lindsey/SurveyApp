@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const InformedConsent = () => {
   const navigate = useNavigate();
+  const [check, setCheck] = useState(false);
   const AssignId = () => {
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
@@ -18,6 +19,10 @@ const InformedConsent = () => {
     // console.log(genRanHex(8));
 
   };
+
+  const checkItem = (e) => {
+    setCheck(!e.target.checked);
+  }
 
   // console.log(document.getElementById("consent").checked);
 
@@ -70,14 +75,16 @@ const InformedConsent = () => {
           id="consent"
           type="checkbox"
           className="accent-green-500"
+          required
+          onClick={(e) => checkItem(e)}
+          checked={check}
         ></input>
       </div>
-      {/* {document.getElementById("consent").checked && */}
-      {/* <Link to="/SurveyPage"> */}
-        <button className="bg-green-500 text-white rounded-sm pl-1 pr-1" onClick={() => AssignId()}>
+      {check &&
+        <button className="bg-green-500 active:bg-green-800 rounded-md text-white p-3" onClick={() => AssignId()}>
           Continue
         </button>
-      {/* </Link> */}
+      /* </Link> */}
     </div>
   );
 };

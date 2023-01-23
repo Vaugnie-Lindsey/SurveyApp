@@ -26,7 +26,7 @@ const MCQuestion = (props) => {
       <input
         type="radio"
         value={answer}
-        className="accent-green-500 text-black border border-green-400"
+        className="accent-blue-400 text-black border border-green-400"
         name={props.name}
         onChange={(answer) => handleChange(answer)}
       ></input>
@@ -36,8 +36,8 @@ const MCQuestion = (props) => {
           <br></br>
           <input
             id={answer}
-            placeholder="this is input"
-            className="dark:text-black border border-green-500 rounded-md focus:border-2 focus:border-red-500 pr-1 pl-1"
+            placeholder="Place answer here"
+            className="dark:text-black border-2 border-blue-400 rounded-md focus:border-2 focus:border-red-500 pr-1 pl-1 ml-6"
             disabled={showOption}
             name={inputName}
           ></input>
