@@ -1,21 +1,45 @@
 import React from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import {useState} from "react";
+import db from "../firebase";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+
 
 const InformedConsent = () => {
   const navigate = useNavigate();
-  const AssignId = () => {
+
+  const generateUser = () => {
+
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
-      [...Array(size)]
-        .map(() => Math.floor(Math.random() * 16).toString(16))
-        .join("");
+    [...Array(size)]
+      .map(() => Math.floor(Math.random() * 16).toString(16))
+      .join("");
 
-    //const docRef = doc(db, "collection", "document");
-    //const 
-    let userCode = genRanHex(6);
-    let url = `/SurveyPage?code=${userCode}`;
+    const id = "3";
+    const docRef = doc(db, "Main", id);
+
+    let genCode = genRanHex(6);
+
+    const data = {
+      invitation_token: " ",
+      invited_by: " ",
+      child_token: genCode,
+      parentID: 1,
+      phone: 0,
+      survey_completed: false
+    };
+    setDoc(docRef, data)
+    .then(() => {
+      console.log("New user added successfully");
+    })
+    .catch(error => {
+      console.log(error);
+    })
+
+    
+    let url = `/SurveyPage?code=${genCode}`;
     navigate(url);
-    // console.log(genRanHex(8));
 
   };
 
@@ -74,7 +98,7 @@ const InformedConsent = () => {
       </div>
       {/* {document.getElementById("consent").checked && */}
       {/* <Link to="/SurveyPage"> */}
-        <button className="bg-green-500 text-white rounded-sm pl-1 pr-1" onClick={() => AssignId()}>
+        <button className="bg-green-500 text-white rounded-sm pl-1 pr-1" onClick={() => generateUser()}>
           Continue
         </button>
       {/* </Link> */}
