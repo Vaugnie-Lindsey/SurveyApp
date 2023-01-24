@@ -1,9 +1,15 @@
-import React, {useState} from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
 
 const InformedConsent = () => {
   const navigate = useNavigate();
+  const [queryParameters] = useSearchParams();
   const [check, setCheck] = useState(false);
+
+  const CheckForValidCode = () => {
+    console.log(queryParameters.get("tokenID"));
+    return true;
+  }
   const AssignId = () => {
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
@@ -12,32 +18,35 @@ const InformedConsent = () => {
         .join("");
 
     //const docRef = doc(db, "collection", "document");
-    //const 
+    //const
     let userCode = genRanHex(6);
-    let url = `/SurveyPage?code=${userCode}`;
-    navigate(url);
+    if (CheckForValidCode) {
+      let url = `/SurveyPage?id=${userCode}`;
+      navigate(url);
+    } else {
+      navigate("/InvalidToken");
+    }
     // console.log(genRanHex(8));
-
   };
 
   const checkItem = (e) => {
     setCheck(!e.target.checked);
-  }
+  };
 
   // console.log(document.getElementById("consent").checked);
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen dark:bg-slate-900 dark:text-white p-16">
-      <h1 className="text-green-500 text-4xl">Informed Consent</h1>
+    <div className="flex flex-col justify-center items-center min-h-screen dark:bg-slate-900 dark:text-white p-16 gap-10">
+      <h1 className="text-green-500 text-4xl">
+        Increasing the Effectiveness of Respondent-Driven Sampling by Surveying
+        the Experiences of Women in STEM
+      </h1>
       <ol className="list-decimal flex flex-col gap-2">
         <li>
-          The title of this study is “Increasing the Effectiveness of
-          Respondent-Driven Sampling by Surveying the Experiences of Women in
-          STEM”. The purpose of this study is to gain knowledge of experiences
-          of women in stem and to examine different strategies for increasing
-          the length of referral chains, improving the effectiveness of
-          respondent-driven sampling, and to test a mobile app for taking
-          surveys.
+          The purpose of this study is to gain knowledge of experiences of women
+          in stem and to examine different strategies for increasing the length
+          of referral chains, improving the effectiveness of respondent-driven
+          sampling, and to test a mobile app for taking surveys.
         </li>
         <li>
           Your participation in this study will involve taking a survey, and,
@@ -74,17 +83,23 @@ const InformedConsent = () => {
         <input
           id="consent"
           type="checkbox"
-          className="accent-green-500"
+          className="accent-green-500 ml-3"
           required
-          onClick={(e) => checkItem(e)}
-          checked={check}
+          onChange={(e) => checkItem(e)}
+          defaultChecked={check}
         ></input>
       </div>
-      {check &&
-        <button className="bg-green-500 active:bg-green-800 rounded-md text-white p-3" onClick={() => AssignId()}>
-          Continue
-        </button>
-      /* </Link> */}
+      {
+        check && (
+          <button
+            className="bg-green-500 active:bg-green-800 rounded-md text-white p-3"
+            onClick={() => AssignId()}
+          >
+            Continue
+          </button>
+        )
+        /* </Link> */
+      }
     </div>
   );
 };

@@ -3,13 +3,28 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 const SurveyComplete = () => {
-  const [queryParameters] = useSearchParams();
+  // const [queryParameters] = useSearchParams();
   const [copyLabel, setCopyLabel] = useState("Copy");
-  const url = `http://localhost:3000/?code=${queryParameters.get("code")}`;
+  const url = `http://localhost:3000/InformedConsent?tokenID=${AssignId()}`;
   const shareData = {
     title: "Women In STEM Study",
     text: "Earn up to $10!",
     url: url,
+  };
+
+  function AssignId () {
+    //Generates random hex code to create unique ID
+    const genRanHex = (size) =>
+      [...Array(size)]
+        .map(() => Math.floor(Math.random() * 16).toString(16))
+        .join("");
+
+    //const docRef = doc(db, "collection", "document");
+    //const 
+    let userCode = genRanHex(6);
+    return userCode;
+    // console.log(genRanHex(8));
+
   };
 
   const openShare = () => {
