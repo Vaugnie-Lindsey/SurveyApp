@@ -13,6 +13,7 @@ const NumberQuestion = (props) => {
         name={props.name}
         type="text"
         className="dark:text-black border-2 border-green-500 rounded-md focus:border-2 focus:border-red-500 pr-1 pl-1 shadow-md shadow-black"
+        required
       ></input>
     </div>
   );

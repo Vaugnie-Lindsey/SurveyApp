@@ -15,6 +15,7 @@ const ScaleQuestion = (props) => {
         value={answer}
         name={props.name}
         className="accent-green-500"
+        required
       ></input>
       <label className="ml-2">{answer}</label>
     </div>

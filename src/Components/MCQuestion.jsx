@@ -29,6 +29,7 @@ const MCQuestion = (props) => {
         className="accent-blue-400 text-black border border-green-400"
         name={props.name}
         onChange={(answer) => handleChange(answer)}
+        required
       ></input>
       <label className="ml-2">{answer}</label>
       {checkForOther(answer) && (
@@ -40,6 +41,7 @@ const MCQuestion = (props) => {
             className="dark:text-black border-2 border-blue-400 rounded-md focus:border-2 focus:border-red-500 pr-1 pl-1 ml-6"
             disabled={showOption}
             name={inputName}
+            required
           ></input>
         </>
       )}
