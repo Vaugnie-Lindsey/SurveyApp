@@ -76,7 +76,7 @@ const SurveyPage = () => {
           <div className="w-auto h-1 bg-black dark:bg-white"></div>
         </div>
         <MCQuestion
-          options={["Text", "Email", "Social Media", "Other (Please Specify)"]}
+          options={["Text", "Email", "Facebook", "Twitter", "Instagram", "Other (Please Specify)"]}
           question="How were you referred here?"
           name="refer"
         />
