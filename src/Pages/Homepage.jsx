@@ -1,12 +1,20 @@
 import React from "react";
 import { Link, useSearchParams } from "react-router-dom";
-const Homepage = () => {
-  const codeValid = () => {
-    //check if the code is valid in Firebase
-    //const docRef = doc(db, "collection", "ValidCodes");
-    //const 
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import db from "../firebase";
 
-  };
+const Homepage = () => {
+  const codeValid = (async () => {
+    const docRef = doc(db, "Codes", "invitation_tokens");
+
+    try {
+      const snap = await getDoc(docRef)
+      
+      console.log(snap.data());
+      } catch(error) {
+        console.log(error)
+        }
+  });
 
   const [queryParameters] = useSearchParams();
   console.log(queryParameters.get("code"));
@@ -19,7 +27,7 @@ const Homepage = () => {
         placeholder="Please input your referal code here"
       ></input>
       <Link to="/InformedConsent">
-        <button className="bg-green-500 rounded-md text-white p-3">
+        <button className="bg-green-500 rounded-md text-white p-3" onClick={() => codeValid()}>
           Continue
         </button>
       </Link>

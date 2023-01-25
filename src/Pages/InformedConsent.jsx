@@ -16,6 +16,7 @@ const InformedConsent = () => {
       .map(() => Math.floor(Math.random() * 16).toString(16))
       .join("");
 
+    // id should be generated
     const id = "3";
     const docRef = doc(db, "Main", id);
 

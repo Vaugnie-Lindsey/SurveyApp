@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const SurveyComplete = () => {
   const [queryParameters] = useSearchParams();
