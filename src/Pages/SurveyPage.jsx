@@ -57,12 +57,13 @@ const SurveyPage = () => {
     let formObject = Object.fromEntries(data.entries());
     console.log(formObject);
     //Firebase stuff to handle data
+    //Basically should be able to just uncomment and add correct collection + document
     // const docRef = await doc(db, "collection", "document");
     // await setDoc = (docRef, {
     //   responses: formObject
     // })
-    console.log(queryParameters.get("code"));
-    navigate(`/SurveyComplete?code=${queryParameters.get("code")}`);
+    console.log(queryParameters.get("id"));
+    navigate(`/SurveyComplete?code=${queryParameters.get("id")}`);
   };
 
   return (
