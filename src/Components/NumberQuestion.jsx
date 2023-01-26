@@ -1,29 +1,21 @@
 import React, {useState} from "react";
 
 const NumberQuestion = (props) => {
-  // const handleChange = (e) => {
-  //     e.target.style.borderColor = "border-green-500";
-  // }
-
 
   const [colors, setColors] = useState({
     bg: "border-green-500"
   });
 
   const [error, setError] = useState({isError: false, message: ""});
-  const [errorMessage, setErrorMessage] = useState("")
 
   const checkForInput = (e) => {
     console.log(e.target.value);
     console.log(isNaN(parseInt(e.target.value)));
     if (e.target.value == "") {
-      console.log("sad face");
       setError({isError: true, message: "This field requires a value"});
-      // setErrorMessage("This field requires a value")
       setColors({bg: "border-red-500"});
     } else if (isNaN(parseInt(e.target.value))){
       setError({isError: true, message: "This field requires a number"});
-      // setErrorMessage("This field requires a number")
       setColors({bg: "border-red-500"});
     } else {
       setError({isError: false, message: ""});

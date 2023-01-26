@@ -66,6 +66,18 @@ const SurveyPage = () => {
     navigate(`/SurveyComplete?code=${queryParameters.get("id")}`);
   };
 
+  const checkForComplete = () => {
+    let complete = false;
+    //check if user has already completed survey
+    //If they have redirect them to share page
+    //This will need to exist on informed consent as well
+    if (complete) {
+      //will need to grab tokenID from user to pass to next area
+      //or can have survey complete page deal with that and not utilize the URL
+      navigate(`/SurveyComplete?code=${queryParameters.get("id")}`)
+    }
+  }
+
   return (
     <form
       className="w-screen flex items-center justify-center dark:bg-slate-900 dark:text-white min-h-screen"

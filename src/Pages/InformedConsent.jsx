@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { assignTokenId } from "../DataFunctions";
 
 const InformedConsent = () => {
   const navigate = useNavigate();
@@ -8,32 +9,32 @@ const InformedConsent = () => {
 
   const CheckForValidCode = () => {
     console.log(queryParameters.get("tokenID"));
-    return true;
+    if (true) {
+      return true;
+    } else {
+      return false;
+    }
   }
   const AssignId = () => {
     //Generates random hex code to create unique ID
-    const genRanHex = (size) =>
-      [...Array(size)]
-        .map(() => Math.floor(Math.random() * 16).toString(16))
-        .join("");
 
     //const docRef = doc(db, "collection", "document");
-    //const
-    let userCode = genRanHex(6);
+    //add userID to user data
+    //Will likely need to use anonymous login to be able to get users data
+
+    let userCode = assignTokenId();
     if (CheckForValidCode) {
       let url = `/SurveyPage?id=${userCode}`;
       navigate(url);
     } else {
       navigate("/InvalidToken");
     }
-    // console.log(genRanHex(8));
   };
 
   const checkItem = (e) => {
-    setCheck(!e.target.checked);
+    console.log(e.target.checked);
+    setCheck(e.target.checked);
   };
-
-  // console.log(document.getElementById("consent").checked);
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen dark:bg-slate-900 dark:text-white p-16 gap-10">

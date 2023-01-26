@@ -4,6 +4,7 @@ import Homepage from './Pages/Homepage';
 import InformedConsent from './Pages/InformedConsent';
 import SurveyComplete from './Pages/SurveyComplete';
 import SurveyPage from './Pages/SurveyPage';
+import InvalidToken from './Pages/InvalidToken';
 import './App.css';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/InformedConsent' element={<InformedConsent />}></Route>
         <Route path='/SurveyComplete' element={<SurveyComplete />}></Route>
         <Route path='/SurveyPage' element={<SurveyPage />}></Route>
+        <Route path='/InvalidToken' element={<InvalidToken />}></Route>
       </Routes>
     </Router>
   );
