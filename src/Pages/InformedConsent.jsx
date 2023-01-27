@@ -1,12 +1,15 @@
-import React from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import {useState} from "react";
+import {useNavigate, useSearchParams } from "react-router-dom";
 import db from "../firebase";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import React, { useState } from "react";
+import { assignTokenId } from "../DataFunctions";
 
 
 const InformedConsent = () => {
   const navigate = useNavigate();
+  const [queryParameters] = useSearchParams();
+  const [check, setCheck] = useState(false);
+
 
   const generateUser = () => {
 
