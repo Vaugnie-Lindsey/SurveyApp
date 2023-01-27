@@ -1,12 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import { assignTokenId } from "../DataFunctions";
 import { useSearchParams } from "react-router-dom";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 const SurveyComplete = () => {
-  const [queryParameters] = useSearchParams();
+  // const [queryParameters] = useSearchParams();
   const [copyLabel, setCopyLabel] = useState("Copy");
-  const url = `http://localhost:3000/?code=${queryParameters.get("code")}`;
+  //Need logic to check if this link has already been generated so that we don't regenerate the link if the user wants to revisit this page
+  const url = `http://localhost:3000/InformedConsent?tokenID=${assignTokenId()}`;
   const shareData = {
     title: "Women In STEM Study",
     text: "Earn up to $10!",
@@ -38,8 +40,8 @@ const SurveyComplete = () => {
         additional payout.
       </p>
       <h3>Use this link to share with your friends and family!</h3>
-      <div className="flex flex-row gap-2">
-        <div className="pl-2 pr-2 pt-1 pb-1 border-2 border-blue-400 rounded-md">
+      <div className="flex flex-col sm:flex-row gap-2 p-2">
+        <div className="pl-2 pr-2 pt-1 pb-1 border-2 border-blue-400 rounded-md min-w-prose">
           <p>{url}</p>
         </div>
         <button className="border-2 border-green-500 pl-2 pr-2 pt-1 pb-1 rounded-md" onClick={() => copyLink()}>{copyLabel}</button>

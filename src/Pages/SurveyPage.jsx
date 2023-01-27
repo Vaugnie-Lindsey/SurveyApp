@@ -57,13 +57,26 @@ const SurveyPage = () => {
     let formObject = Object.fromEntries(data.entries());
     console.log(formObject);
     //Firebase stuff to handle data
+    //Basically should be able to just uncomment and add correct collection + document
     // const docRef = await doc(db, "collection", "document");
     // await setDoc = (docRef, {
     //   responses: formObject
     // })
-    console.log(queryParameters.get("code"));
-    navigate(`/SurveyComplete?code=${queryParameters.get("code")}`);
+    console.log(queryParameters.get("id"));
+    navigate(`/SurveyComplete?code=${queryParameters.get("id")}`);
   };
+
+  const checkForComplete = () => {
+    let complete = false;
+    //check if user has already completed survey
+    //If they have redirect them to share page
+    //This will need to exist on informed consent as well
+    if (complete) {
+      //will need to grab tokenID from user to pass to next area
+      //or can have survey complete page deal with that and not utilize the URL
+      navigate(`/SurveyComplete?code=${queryParameters.get("id")}`)
+    }
+  }
 
   return (
     <form
@@ -76,7 +89,7 @@ const SurveyPage = () => {
           <div className="w-auto h-1 bg-black dark:bg-white"></div>
         </div>
         <MCQuestion
-          options={["Text", "Email", "Social Media", "Other (Please Specify)"]}
+          options={["Text", "Email", "Facebook", "Twitter", "Instagram", "Other (Please Specify)"]}
           question="How were you referred here?"
           name="refer"
         />

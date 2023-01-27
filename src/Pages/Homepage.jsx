@@ -38,7 +38,7 @@ const Homepage = () => {
         required
       ></input>
       <Link to="/InformedConsent">
-        <button className="bg-green-500 rounded-md text-white p-3" onClick={() => codeValid(document.getElementById("form").value)}>
+        <button className="bg-green-500 active:bg-green-800 rounded-md text-white p-3" onClick={() => codeValid(document.getElementById("form").value)}>
           Continue
         </button>
       </Link>
