@@ -2,13 +2,36 @@ import React from "react";
 import { useState } from "react";
 import { assignTokenId } from "../DataFunctions";
 import { useSearchParams } from "react-router-dom";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import db from "../firebase";
+import { async } from "@firebase/util";
+import { useEffect } from "react";
 
 const SurveyComplete = () => {
-  // const [queryParameters] = useSearchParams();
+  const [queryParameters] = useSearchParams();
+  let id = queryParameters.get("id")
+  let tokenID = assignTokenId();
+
+  useEffect(() => {
+    const getData = async () => {
+      const codes = await doc(db, "Codes", "invitation_tokens");
+      updateDoc(codes, {
+        token: arrayUnion(tokenID)
+      })
+      const user = await doc(db, "Main", id);
+      const finalData = await getDoc(user);
+      const moreData = finalData.data();
+      console.log(getDoc(user));
+      console.log(moreData);
+    }
+
+    getData()
+  }
+  )
   const [copyLabel, setCopyLabel] = useState("Copy");
   //Need logic to check if this link has already been generated so that we don't regenerate the link if the user wants to revisit this page
-  const url = `http://localhost:3000/InformedConsent?tokenID=${assignTokenId()}`;
+  //Also save tokenID to user
+  const url = `http://localhost:3000/InformedConsent?tokenID=${tokenID}`;
   const shareData = {
     title: "Women In STEM Study",
     text: "Earn up to $10!",

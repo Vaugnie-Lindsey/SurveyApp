@@ -4,6 +4,8 @@ import NumberQuestion from "../Components/NumberQuestion";
 import ScaleQuestion from "../Components/ScaleQuestion";
 import MultipleScale from "../Components/MultipleScale";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
+import { getFirestore, doc, getDoc, updateDoc, arrayUnion, setDoc } from "firebase/firestore";
+import db from "../firebase";
 
 const SurveyPage = () => {
   const navigate = useNavigate();
@@ -51,19 +53,20 @@ const SurveyPage = () => {
     },
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     var data = new FormData(e.target);
     let formObject = Object.fromEntries(data.entries());
     console.log(formObject);
+    let id = queryParameters.get("id")
     //Firebase stuff to handle data
     //Basically should be able to just uncomment and add correct collection + document
-    // const docRef = await doc(db, "collection", "document");
-    // await setDoc = (docRef, {
-    //   responses: formObject
-    // })
+    const docRef = await doc(db, "main", id);
+    await setDoc(docRef, {
+      responses: formObject
+    })
     console.log(queryParameters.get("id"));
-    navigate(`/SurveyComplete?code=${queryParameters.get("id")}`);
+    navigate(`/SurveyComplete?id=${queryParameters.get("id")}`);
   };
 
   const checkForComplete = () => {

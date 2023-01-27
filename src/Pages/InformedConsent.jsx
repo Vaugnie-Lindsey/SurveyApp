@@ -20,7 +20,7 @@ const InformedConsent = () => {
       .join("");
 
     // id should be generated
-    const id = "3";
+    const id = "4";
     const docRef = doc(db, "Main", id);
 
     let genCode = genRanHex(6);
@@ -42,7 +42,7 @@ const InformedConsent = () => {
     })
 
     
-    let url = `/SurveyPage?code=${genCode}`;
+    let url = `/SurveyPage?id=${id}`;
     navigate(url);
 
   };

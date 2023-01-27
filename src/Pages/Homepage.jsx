@@ -14,7 +14,8 @@ const Homepage = () => {
       for(i = 0; i < snap.data()['token'].length; i++) {
         var token = snap.data()['token'][i];
         if(passedToken == token) {
-          console.log("Token is valid")
+          //Add anonymous sign in
+          console.log("Token is valid");
           // Link to informed consent page
         }
       }
