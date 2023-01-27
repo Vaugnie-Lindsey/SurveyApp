@@ -20,7 +20,7 @@ const InformedConsent = () => {
       .join("");
 
     // id should be generated
-    const id = "4";
+    const id = "6";
     const docRef = doc(db, "Main", id);
 
     let genCode = genRanHex(6);
@@ -28,10 +28,11 @@ const InformedConsent = () => {
     const data = {
       invitation_token: " ",
       invited_by: " ",
-      child_token: genCode,
+      child_token: " ",
       parentID: 1,
       phone: 0,
-      survey_completed: false
+      survey_completed: false,
+      response: {}
     };
     setDoc(docRef, data)
     .then(() => {

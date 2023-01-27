@@ -1,24 +1,33 @@
 import React from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
+import { getFirestore, doc, getDoc, } from "firebase/firestore";
 import db from "../firebase";
 
 const Homepage = () => {
+  let navigate = useNavigate();
+  const [queryParameters] = useSearchParams();
+  let token = queryParameters.get("tokenID");
   const codeValid = (async (passedToken) => {
 
     const docRef = doc(db, "Codes", "invitation_tokens");
 
     try {
-      const snap = await getDoc(docRef)
+      const snap = await getDoc(docRef);
+      console.log(snap.data());
       var i;
+      let validToken = false;
       for(i = 0; i < snap.data()['token'].length; i++) {
         var token = snap.data()['token'][i];
         if(passedToken == token) {
           //Add anonymous sign in
           console.log("Token is valid");
+          navigate("/InformedConsent");
           // Link to informed consent page
         }
       }
+      // if (!validToken) {
+      //   navigate("/InvalidToken");
+      // }
       // Link to error page
 
       } catch(error) {
@@ -26,8 +35,7 @@ const Homepage = () => {
         }
   });
 
-  const [queryParameters] = useSearchParams();
-  console.log(queryParameters.get("code"));
+  codeValid(token);
 
   return (
     <div className="flex flex-col justify-center items-center gap-5 dark:bg-slate-900 dark:text-white min-h-screen">

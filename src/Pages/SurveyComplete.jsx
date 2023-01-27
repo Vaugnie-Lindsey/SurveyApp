@@ -8,30 +8,56 @@ import { async } from "@firebase/util";
 import { useEffect } from "react";
 
 const SurveyComplete = () => {
+  const [url, setUrl] = useState("");
   const [queryParameters] = useSearchParams();
   let id = queryParameters.get("id")
   let tokenID = assignTokenId();
+  let tokenAssigned = false;
 
   useEffect(() => {
     const getData = async () => {
       const codes = await doc(db, "Codes", "invitation_tokens");
+      // const snap = await getDoc(codes);
+      // for(i = 0; i < snap.data()['token'].length; i++) {
+      //   var token = snap.data()['token'][i];
+      //   if(passedToken == token) {
+      //     tokenAssigned = true;
+      //     setUrl(`http://localhost:3000/Homepage?tokenID=${tokenID}`)
+      //     //Add anonymous sign in
+      //     // Link to informed consent page
+      //   }
+      // }
+
       updateDoc(codes, {
         token: arrayUnion(tokenID)
       })
       const user = await doc(db, "Main", id);
       const finalData = await getDoc(user);
       const moreData = finalData.data();
+      if (moreData.child_token === " ") {
+        console.log("New person");
+        await updateDoc(codes, {
+          token: arrayUnion(tokenID)
+        });
+
+        await updateDoc(user, {
+          child_token: tokenID
+        });
+        setUrl(`http://localhost:3000/Homepage?tokenID=${tokenID}`)
+      } else {
+        let existingToken = moreData.child_token;
+        console.log("old person");
+        setUrl(`http://localhost:3000/Homepage?tokenID=${existingToken}`);
+      }
       console.log(getDoc(user));
       console.log(moreData);
     }
-
     getData()
-  }
-  )
+  }, [])
   const [copyLabel, setCopyLabel] = useState("Copy");
   //Need logic to check if this link has already been generated so that we don't regenerate the link if the user wants to revisit this page
   //Also save tokenID to user
-  const url = `http://localhost:3000/InformedConsent?tokenID=${tokenID}`;
+  // const url = `http://localhost:3000/Homepage?tokenID=${tokenID}`;
   const shareData = {
     title: "Women In STEM Study",
     text: "Earn up to $10!",
