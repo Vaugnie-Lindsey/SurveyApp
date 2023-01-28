@@ -1,6 +1,6 @@
 import {useNavigate, useSearchParams } from "react-router-dom";
 import db from "../firebase";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDocs, query, collection } from "firebase/firestore";
 import React, { useState } from "react";
 import { assignTokenId } from "../DataFunctions";
 
@@ -11,7 +11,7 @@ const InformedConsent = () => {
   const [check, setCheck] = useState(false);
 
 
-  const generateUser = () => {
+  const generateUser = (async() => {
 
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
@@ -19,12 +19,33 @@ const InformedConsent = () => {
       .map(() => Math.floor(Math.random() * 16).toString(16))
       .join("");
 
-    // id should be generated
-    const id = "6";
-    const docRef = doc(db, "Main", id);
 
+    // Here the ids in the db are checked an the new id is set to the max+1. Idk, there is prob a better way to do this....
+    const q = query(collection(db, "Main"));
+    let max = Number.MIN_SAFE_INTEGER;
+    try {
+      const snap = await getDocs(q);
+      
+      snap.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        const docName = doc.id;
+        if(docName > max) {
+          max = doc.id
+        } 
+      
+      });
+      console.log(max);
+      max = parseInt(max) + 1
+      } catch(error) {
+        console.log(error)
+    }
+    
+    const id = '' + max;
+    
+    const docRef = doc(db, "Main", id);
     let genCode = genRanHex(6);
 
+    // Here, we will look in the db to find the parentId by matching invitation_token with the child_token of the parent (There will be 1 and only 1)
     const data = {
       invitation_token: " ",
       invited_by: " ",
@@ -42,11 +63,11 @@ const InformedConsent = () => {
       console.log(error);
     })
 
-    
+    // make sure users cant go back to the previous page and/or add more than one user to db.
     let url = `/SurveyPage?id=${id}`;
     navigate(url);
 
-  };
+  });
 
   const checkItem = (e) => {
     console.log(e.target.checked);

@@ -1,12 +1,15 @@
 import React from "react";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
-import { getFirestore, doc, getDoc, } from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import db from "../firebase";
 
 const Homepage = () => {
   let navigate = useNavigate();
   const [queryParameters] = useSearchParams();
   let token = queryParameters.get("tokenID");
+
+  // Remember, tokens can only be used 3 times, so a system needs to put in place for this.
+  // Prefereably, we dont just hardcode a cap here and instead implement this when sharing the codes at the end
   const codeValid = (async (passedToken) => {
 
     const docRef = doc(db, "Codes", "invitation_tokens");
