@@ -43,11 +43,11 @@ const SurveyComplete = () => {
         await updateDoc(user, {
           child_token: tokenID
         });
-        setUrl(`http://localhost:3000/Homepage?tokenID=${tokenID}`)
+        setUrl(`http://localhost:3000/?id=${id}&tokenID=${tokenID}`);
       } else {
         let existingToken = moreData.child_token;
         console.log("old person");
-        setUrl(`http://localhost:3000/Homepage?tokenID=${existingToken}`);
+        setUrl(`http://localhost:3000/?id=${id}&tokenID=${existingToken}`);
       }
       console.log(getDoc(user));
       console.log(moreData);
@@ -77,7 +77,7 @@ const SurveyComplete = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5 dark:bg-slate-900 dark:text-white min-h-screen p-16">
+    <div className="flex flex-col justify-center items-center gap-5 dark:bg-slate-900 dark:text-white min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56">
       <h1 className="dark:text-green-500 text-4xl">
         The survey is now complete!
       </h1>

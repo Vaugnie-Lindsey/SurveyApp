@@ -7,6 +7,7 @@ const Homepage = () => {
   let navigate = useNavigate();
   const [queryParameters] = useSearchParams();
   let token = queryParameters.get("tokenID");
+  let id = queryParameters.get("id");
   const codeValid = (async (passedToken) => {
 
     const docRef = doc(db, "Codes", "invitation_tokens");
@@ -20,14 +21,15 @@ const Homepage = () => {
         var token = snap.data()['token'][i];
         if(passedToken == token) {
           //Add anonymous sign in
+          validToken = true;
           console.log("Token is valid");
-          navigate("/InformedConsent");
+          navigate(`/InformedConsent?parentID=${id}&tokenID=${passedToken}`);
           // Link to informed consent page
         }
       }
-      // if (!validToken) {
-      //   navigate("/InvalidToken");
-      // }
+      if (!validToken) {
+        navigate("/InvalidToken");
+      }
       // Link to error page
 
       } catch(error) {

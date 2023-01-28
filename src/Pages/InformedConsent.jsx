@@ -1,6 +1,6 @@
 import {useNavigate, useSearchParams } from "react-router-dom";
 import db from "../firebase";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { assignTokenId } from "../DataFunctions";
 
@@ -11,8 +11,8 @@ const InformedConsent = () => {
   const [check, setCheck] = useState(false);
 
 
-  const generateUser = () => {
-
+  const generateUser = async () => {
+    queryParameters.get("tokenID");
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
     [...Array(size)]
@@ -20,19 +20,29 @@ const InformedConsent = () => {
       .join("");
 
     // id should be generated
-    const id = "6";
-    const docRef = doc(db, "Main", id);
+    const aDocRef = await doc(db, "Main", "ID");
+    const idNumDoc = await getDoc(aDocRef);
+    const idNum = idNumDoc.data();
+    console.log(idNum);
+    const id = idNum + 1;
+    await updateDoc(aDocRef, {
+      id: idNum + 1
+    })
+    const docRef = await doc(db, "Main", id);
+    
 
     let genCode = genRanHex(6);
 
     const data = {
-      invitation_token: " ",
+      id: idNum + 1,
+      invitation_token: queryParameters.get("tokenID"),
       invited_by: " ",
       child_token: " ",
-      parentID: 1,
+      parentID: queryParameters.get("parentID"),
       phone: 0,
       survey_completed: false,
-      response: {}
+      response: {},
+      consent: true
     };
     setDoc(docRef, data)
     .then(() => {
@@ -54,7 +64,7 @@ const InformedConsent = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen dark:bg-slate-900 dark:text-white p-16 gap-10">
+    <div className="flex flex-col justify-center items-center min-h-screen dark:bg-slate-900 dark:text-white pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56 gap-10">
       <h1 className="text-green-500 text-4xl">
         Increasing the Effectiveness of Respondent-Driven Sampling by Surveying
         the Experiences of Women in STEM
