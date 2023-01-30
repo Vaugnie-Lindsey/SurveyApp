@@ -136,8 +136,9 @@ const InformedConsent = () => {
       {
         check && (
           <button
-            className="bg-green-500 active:bg-green-800 rounded-md text-white p-3"
+            className="bg-green-500 active:bg-green-800 rounded-md text-white p-3 disabled:bg-green-800 disabled:cursor-not-allowed"
             onClick={() => generateUser()}
+            disabled={!check}
           >
             Continue
           </button>

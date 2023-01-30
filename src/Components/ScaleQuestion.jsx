@@ -14,7 +14,7 @@ const ScaleQuestion = (props) => {
         type="radio"
         value={answer}
         name={props.name}
-        className="accent-green-500"
+        className="accent-blue-600"
         required
       ></input>
       <label className="ml-2">{answer}</label>

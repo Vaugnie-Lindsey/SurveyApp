@@ -52,7 +52,7 @@ const MCQuestion = (props) => {
           <input
             id={answer}
             placeholder="Place answer here"
-            className={`dark:text-black border-2 ${colors.bg} rounded-md focus:border-2 focus:outline-blue-600 pr-1 pl-1 ml-6`}
+            className={`dark:text-black border-2 ${colors.bg} rounded-md focus:border-2 focus:outline-blue-600 hover:outline-blue-600 pr-1 pl-1 ml-6`}
             disabled={showOption}
             name={inputName}
             required

@@ -222,7 +222,7 @@ const SurveyPage = () => {
           question="17. The following factor influenced your decision to study your major / degree:"
           name="factors"
         />
-        <button className="bg-green-500 rounded-sm w-1/5 text-white">
+        <button className="bg-green-500 hover:bg-green-800 rounded-sm w-1/5 text-white p-2 self-end transition-all">
           submit
         </button>
       </div>

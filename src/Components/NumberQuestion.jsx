@@ -31,7 +31,7 @@ const NumberQuestion = (props) => {
       <input
         name={props.name}
         type="text"
-        className={`dark:text-black border-2 ${colors.bg} rounded-md focus:border-2 focus:outline-green-500 focus:outline-4 pr-1 pl-1 shadow-md shadow-black`}
+        className={`dark:text-black border-2 ${colors.bg} rounded-md focus:border-2 focus:outline-blue-600 focus:outline-4 hover:border-blue-600 pr-1 pl-1 shadow-md shadow-black`}
         required
         onBlur={(e) => checkForInput(e)}
       ></input>
