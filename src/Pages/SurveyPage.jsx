@@ -58,6 +58,7 @@ const SurveyPage = () => {
     var data = new FormData(e.target);
     let formObject = Object.fromEntries(data.entries());
     console.log(formObject);
+    console.log(formObject.name);
     let id = queryParameters.get("id");
     console.log(id);
     //Firebase stuff to handle data

@@ -11,7 +11,7 @@ const InformedConsent = () => {
   const [check, setCheck] = useState(false);
 
 
-  const generateUser = async (async() => {
+  const generateUser = (async() => {
     queryParameters.get("tokenID");
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
@@ -29,25 +29,28 @@ const InformedConsent = () => {
       snap.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         const docName = doc.id;
-        if(docName > max) {
-          max = doc.id
+        console.log(docName);
+        if(parseInt(docName) > parseInt(max)) {
+          max = doc.id;
+          console.log(max);
         } 
       
       });
       console.log(max);
-      max = parseInt(max) + 1
+      max = parseInt(max) + 1;
       } catch(error) {
-        console.log(error)
+        console.log(error);
     }
     
     const id = '' + max;
+    console.log(id);
     
     const docRef = doc(db, "Main", id);
     let genCode = genRanHex(6);
 
     // Here, we will look in the db to find the parentId by matching invitation_token with the child_token of the parent (There will be 1 and only 1)
     const data = {
-      id: idNum + 1,
+      id: max,
       invitation_token: queryParameters.get("tokenID"),
       invited_by: " ",
       child_token: " ",

@@ -17,20 +17,10 @@ const SurveyComplete = () => {
   useEffect(() => {
     const getData = async () => {
       const codes = await doc(db, "Codes", "invitation_tokens");
-      // const snap = await getDoc(codes);
-      // for(i = 0; i < snap.data()['token'].length; i++) {
-      //   var token = snap.data()['token'][i];
-      //   if(passedToken == token) {
-      //     tokenAssigned = true;
-      //     setUrl(`http://localhost:3000/Homepage?tokenID=${tokenID}`)
-      //     //Add anonymous sign in
-      //     // Link to informed consent page
-      //   }
-      // }
 
-      updateDoc(codes, {
-        token: arrayUnion(tokenID)
-      })
+      // updateDoc(codes, {
+      //   token: arrayUnion(tokenID)
+      // })
       const user = await doc(db, "Main", id);
       const finalData = await getDoc(user);
       const moreData = finalData.data();
