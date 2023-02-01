@@ -13,27 +13,41 @@ const Homepage = () => {
   let id = queryParameters.get("id");
   const codeValid = (async (passedToken) => {
 
-    const docRef = doc(db, "Codes", "invitation_tokens");
+    const docRef = doc(db, "Codes", "Invitation_tokens");
 
     try {
       const snap = await getDoc(docRef);
       console.log(snap.data());
       var i;
       let validToken = false;
+
       for(i = 0; i < snap.data()['token'].length; i++) {
-        var token = snap.data()['token'][i];
+
+        var token = snap.data()['token'][i]['tokenID'];
+        var tokenUses = snap.data()['token'][i]['tokenUses'];
+
         if(passedToken == token) {
-          //Add anonymous sign in
-          validToken = true;
-          console.log("Token is valid");
-          navigate(`/InformedConsent?parentID=${id}&tokenID=${passedToken}`);
-          // Link to informed consent page
+
+          if(tokenUses > 0) {
+            //Add anonymous sign in
+            validToken = true;
+            console.log("Token is valid");
+            navigate(`/InformedConsent?parentID=${id}&tokenID=${passedToken}`);
+            // Link to informed consent page 
+          }
+
+          else {
+            navigate("/TokenAlreadyUsed")
+          }
+
         }
       }
       if (!validToken) {
         navigate("/InvalidToken");
       }
       // Link to error page
+
+
 
       } catch(error) {
         console.log(error)
