@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 import db from "../firebase";
 
 const Homepage = () => {
@@ -18,6 +18,7 @@ const Homepage = () => {
     try {
       const snap = await getDoc(docRef);
       console.log(snap.data());
+      var data = snap.data();
       var i;
       let validToken = false;
 
@@ -30,6 +31,10 @@ const Homepage = () => {
 
           if(tokenUses > 0) {
             //Add anonymous sign in
+            data['token'][i]['tokenUses']--;
+            updateDoc(docRef, {
+              token: data
+            })
             validToken = true;
             console.log("Token is valid");
             navigate(`/InformedConsent?parentID=${id}&tokenID=${passedToken}`);

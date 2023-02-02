@@ -11,7 +11,7 @@ const SurveyComplete = () => {
   const [url, setUrl] = useState("");
   const [queryParameters] = useSearchParams();
   let id = queryParameters.get("id")
-  let tokenID = assignTokenId();
+  let token = assignTokenId();
   let tokenAssigned = false;
 
   useEffect(() => {
@@ -27,13 +27,19 @@ const SurveyComplete = () => {
       if (moreData.child_token === " ") {
         console.log("New person");
         await updateDoc(codes, {
-          token: arrayUnion(tokenID)
+          token: arrayUnion(
+            {
+              seed: false,
+              tokenID: token,
+              tokenUses: 3
+            }
+          )
         });
 
         await updateDoc(user, {
-          child_token: tokenID
+          child_token: token
         });
-        setUrl(`http://localhost:3000/?id=${id}&tokenID=${tokenID}`);
+        setUrl(`http://localhost:3000/?id=${id}&tokenID=${token}`);
       } else {
         let existingToken = moreData.child_token;
         console.log("old person");
