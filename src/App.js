@@ -5,6 +5,7 @@ import InformedConsent from './Pages/InformedConsent';
 import SurveyComplete from './Pages/SurveyComplete';
 import SurveyPage from './Pages/SurveyPage';
 import InvalidToken from './Pages/InvalidToken';
+import TokenAlreadyUsed from './Pages/TokenAlreadyUsed';
 import ReturningUser from './Pages/ReturningUser';
 import './App.css';
 
@@ -33,6 +34,7 @@ function App() {
         <Route path='/SurveyComplete' element={<SurveyComplete />}></Route>
         <Route path='/SurveyPage' element={<SurveyPage />}></Route>
         <Route path='/InvalidToken' element={<InvalidToken />}></Route>
+        <Route path='/TokenAlreadyUsed' element={<TokenAlreadyUsed />}></Route>
         <Route path='/ReturningUser' element={<ReturningUser />}></Route>
       </Routes>
     </Router>
