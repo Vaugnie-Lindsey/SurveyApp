@@ -7,7 +7,7 @@ const InvalidToken = () => {
             <h1 className="text-3xl text-green-500">Hmm... Looks like something went wrong</h1>
             <p>The Link provided contains an invalid authentication code. Please contact the person who referred you and confirm you have the correct link</p>
             <Link to="/ReturningUser">
-                <button className="bg-green-500 text-white">Already Completed the Survey?</button>
+                <p className="text-green-500 underline">Already Completed the Survey?</p>
             </Link>
         </div>
     );

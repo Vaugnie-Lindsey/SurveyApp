@@ -16,7 +16,7 @@ const SurveyComplete = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const codes = await doc(db, "Codes", "invitation_tokens");
+      const codes = await doc(db, "Codes", "Invitation_tokens");
 
       // updateDoc(codes, {
       //   token: arrayUnion(tokenID)

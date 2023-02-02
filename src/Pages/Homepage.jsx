@@ -13,7 +13,7 @@ const Homepage = () => {
   let id = queryParameters.get("id");
   const codeValid = (async (passedToken) => {
 
-    const docRef = doc(db, "Codes", "invitation_tokens");
+    const docRef = doc(db, "Codes", "Invitation_tokens");
 
     try {
       const snap = await getDoc(docRef);
