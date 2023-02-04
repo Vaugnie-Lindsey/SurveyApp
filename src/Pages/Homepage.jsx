@@ -18,23 +18,26 @@ const Homepage = () => {
     try {
       const snap = await getDoc(docRef);
       console.log(snap.data());
-      var data = snap.data();
+      
       var i;
       let validToken = false;
 
       for(i = 0; i < snap.data()['token'].length; i++) {
-
+        
         var token = snap.data()['token'][i]['tokenID'];
         var tokenUses = snap.data()['token'][i]['tokenUses'];
-
+        
         if(passedToken == token) {
 
           if(tokenUses > 0) {
             //Add anonymous sign in
-            data['token'][i]['tokenUses']--;
-            updateDoc(docRef, {
-              token: data
-            })
+            var dataUpdate = snap.data();
+            dataUpdate['token'][i]['tokenUses']--;
+            console.log(dataUpdate)
+            // This needs to be fixed
+            //updateDoc(docRef, {
+            //  'token' : data
+            //})
             validToken = true;
             console.log("Token is valid");
             navigate(`/InformedConsent?parentID=${id}&tokenID=${passedToken}`);
