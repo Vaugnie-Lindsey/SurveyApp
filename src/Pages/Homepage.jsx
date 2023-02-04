@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
-import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, arrayRemove, arrayUnion } from "firebase/firestore";
 import db from "../firebase";
 
 const Homepage = () => {
@@ -32,12 +32,32 @@ const Homepage = () => {
           if(tokenUses > 0) {
             //Add anonymous sign in
             var dataUpdate = snap.data();
-            dataUpdate['token'][i]['tokenUses']--;
+            
             console.log(dataUpdate)
+            var seed = dataUpdate['token'][i]['seed'];
+            var tokenID = dataUpdate['token'][i]['tokenID'];
+            var tokenUses1 = dataUpdate['token'][i]['tokenUses']--;
+            var tokenUses2 = dataUpdate['token'][i]['tokenUses']--;
             // This needs to be fixed
-            //updateDoc(docRef, {
-            //  'token' : data
-            //})
+            await updateDoc(docRef, {
+              token: arrayRemove(
+                {
+                  seed: seed,
+                  tokenID: tokenID,
+                  tokenUses: tokenUses1
+                }
+              )
+            });
+            await updateDoc(docRef, {
+              token: arrayUnion(
+                {
+                  seed: seed,
+                  tokenID: tokenID,
+                  tokenUses: tokenUses2
+                }
+              )
+            });
+
             validToken = true;
             console.log("Token is valid");
             navigate(`/InformedConsent?parentID=${id}&tokenID=${passedToken}`);
