@@ -77,14 +77,11 @@ const SurveyComplete = () => {
       <h1 className="dark:text-green-500 text-4xl">
         The survey is now complete!
       </h1>
-      <h2 className="dark:text-green-500 text-2xl">Have a coffee on us.</h2>
+      <h2 className="items-center dark:text-green-500 text-2xl">Have a coffee on us.</h2>
       <p>
-        Thank you for participating in our survey. We ask that you use one if
-        the methods below to share the link with a friend or family member. For
-        each person that you share it to (up to three) you can recieve an
-        additional payout.
+        Thank you for participating in our survey. You will be sent a $5 Starbucks gift code via text within the next 2 days . We ask that you please use the link below to invite other Women in STEM to take this survey as well. 
+        For each person that you share it to (up to three) you can recieve an addition $5 Starbucks gift code per person. All gift codes will be sent seperately.
       </p>
-      <h3>Use this link to share with your friends and family!</h3>
       <div className="flex flex-col sm:flex-row gap-2 p-2">
         <div className="pl-2 pr-2 pt-1 pb-1 border-2 border-blue-400 rounded-md min-w-prose">
           <p>{url}</p>
