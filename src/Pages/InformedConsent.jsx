@@ -3,15 +3,36 @@ import db from "../firebase";
 import { getFirestore, doc, setDoc, getDocs, query, collection, getDoc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
 import { assignTokenId } from "../DataFunctions";
-
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 const InformedConsent = () => {
   const navigate = useNavigate();
   const [queryParameters] = useSearchParams();
   const [check, setCheck] = useState(false);
+  const [mobile, setMobile] = useState();
 
-
-  const generateUser = (async() => {
+  const generateUser = (async(phoneNumber) => {
+  
+   // check the phone number to see if it already exists
+   const snapshot = query(collection(db, "Main"));
+   const snap = await getDocs(snapshot);
+   snap.forEach((doc) => {
+    if(doc.data()['phone'] == phoneNumber) {
+      // if pre-existing user has finished survey, skip creating new user and take them to the end
+      if(doc.data()['survey_completed'] == true) {
+        navigate(`/SurveyComplete?id=${doc.data()['id']}`);
+      }
+      // if pre-existing user has not finished survey, skip creating new user and take them back to survey
+      else {
+        let url = `/SurveyPage?id=${doc.data()['id']}`;
+        navigate(url);
+      }
+      
+    }
+  });
+ 
+   
     queryParameters.get("tokenID");
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
@@ -29,20 +50,21 @@ const InformedConsent = () => {
       snap.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         const docName = doc.id;
-        console.log(docName);
+        //console.log(docName);
         if(parseInt(docName) > parseInt(max)) {
           max = doc.id;
         } 
-      
+        
       });
       max = parseInt(max) + 1;
       } catch(error) {
         console.log(error);
     }
-    
     const id = '' + max;
     
     const docRef = doc(db, "Main", id);
+
+
     let genCode = genRanHex(6);
 
     // Here, we will look in the db to find the parentId by matching invitation_token with the child_token of the parent (There will be 1 and only 1)
@@ -52,7 +74,7 @@ const InformedConsent = () => {
       invited_by: " ",
       child_token: " ",
       parentID: queryParameters.get("parentID"),
-      phone: 0,
+      phone: mobile,
       survey_completed: false,
       response: {},
       consent: true
@@ -129,18 +151,33 @@ const InformedConsent = () => {
           onChange={(e) => checkItem(e)}
           defaultChecked={check}
         ></input>
+
+          
       </div>
+
+        <PhoneInput className={`dark:text-black rounded-md focus:border-2 focus:outline-blue-600 hover:outline-blue-600 `}
+          country={'us'}
+          value={mobile}
+          onChange={setMobile} />
       {
         check && (
+
+
+          
           <button
+          
             className="bg-green-500 active:bg-green-800 rounded-md text-white p-3 disabled:bg-green-800 disabled:cursor-not-allowed"
-            onClick={() => generateUser()}
+            onClick={() => generateUser(mobile)}
             disabled={!check}
           >
+            
+            
             Continue
           </button>
         )
-        /* </Link> */
+        
+          
+        
       }
     </div>
   );
