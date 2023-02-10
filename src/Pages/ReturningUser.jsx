@@ -14,8 +14,8 @@ const ReturningUser = () => {
     }
   return (
     <>
-      <div className="flex flex-col items-center min-h-screen dark:bg-slate-900 dark:text-white p-16 gap-10">
-        <h1 className="text-3xl text-green-500">Welcome Back</h1>
+      <div className="flex flex-col items-center min-h-screen p-16 gap-10">
+        <h1 className="text-3xl text-appOrange">Welcome Back</h1>
         <h3>Please Enter Your Phone Number Below</h3>
         <input
           id="phone"
@@ -24,7 +24,7 @@ const ReturningUser = () => {
           pattern="[+]{1}[0-9]{11,14}"
           className="rounded-md border-2 border-gray-500 p-2 text-black"
         ></input>
-        <button className="bg-green-500 hover:bg-green-800 rounded-sm text-white p-2 transition-all" onClick={() => checkPhoneNumber(document.getElementById("phone").value)}>Submit</button>
+        <button className="bg-appOrange hover:bg-green-800 rounded-sm text-white p-2 transition-all" onClick={() => checkPhoneNumber(document.getElementById("phone").value)}>Submit</button>
       </div>
     </>
   );

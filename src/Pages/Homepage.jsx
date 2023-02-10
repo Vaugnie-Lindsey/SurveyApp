@@ -85,9 +85,9 @@ const Homepage = () => {
   codeValid(token);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5 dark:bg-slate-900 dark:text-white min-h-screen">
-      <h1 className="text-4xl text-green-500">Loading...</h1>
-      <div className="rounded-full w-20 h-20 bg-slate-900 flex flex-col justify-center items-center"><div className="animate-spin rounded-full w-20 h-20 border-l-4 border-l-green-500"></div></div>
+    <div className="flex flex-col justify-center items-center gap-5 min-h-screen">
+      <h1 className="text-4xl text-appOrange">Loading...</h1>
+      <div className="rounded-full w-20 h-20 bg-white flex flex-col justify-center items-center"><div className="animate-spin rounded-full w-20 h-20 border-l-4 border-l-appBlue"></div></div>
       {/* <h1 className="text-green-500 text-4xl">Have a Coffee on Us</h1>
       <input
         id='form'
