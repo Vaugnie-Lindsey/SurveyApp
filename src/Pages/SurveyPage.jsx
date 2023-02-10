@@ -4,7 +4,7 @@ import NumberQuestion from "../Components/NumberQuestion";
 import ScaleQuestion from "../Components/ScaleQuestion";
 import MultipleScale from "../Components/MultipleScale";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
-import { getFirestore, doc, getDoc, updateDoc, arrayUnion, setDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc, arrayRemove, arrayUnion, setDoc } from "firebase/firestore";
 import db from "../firebase";
 
 const SurveyPage = () => {
@@ -55,25 +55,65 @@ const SurveyPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+  
     var data = new FormData(e.target);
     let formObject = Object.fromEntries(data.entries());
-    console.log(formObject);
-    console.log(formObject.name);
+    //console.log(formObject);
+    //console.log(formObject.name);
     let id = queryParameters.get("id");
-    console.log(id);
+    //console.log(id);
     //Firebase stuff to handle data
     //Basically should be able to just uncomment and add correct collection + document
     const docRef = await doc(db, "Main", id);
+    const docRef2 = doc(db, "Codes", "Invitation_tokens");
     const thisDoc = await getDoc(docRef);
+    const snap = await getDoc(docRef2);
     const docData = thisDoc.data();
-    console.log(docData);
+    //console.log(docData);
     // console.log(docRef);
     await updateDoc(docRef, {
       "survey_completed": true,
       "response": formObject
     })
-      console.log(queryParameters.get("id"));
-      navigate(`/SurveyComplete?id=${queryParameters.get("id")}`);
+
+    var i;
+    var passedToken = docData['invitation_token']
+    for(i = 0; i < snap.data()['token'].length; i++) {
+        
+      var token = snap.data()['token'][i]['tokenID'];
+      
+      if(passedToken == token) {
+
+        const dataUpdate = snap.data();
+
+        var seed = dataUpdate['token'][i]['seed'];
+        var tokenUses1 = dataUpdate['token'][i]['tokenUses']--;
+        var tokenID = snap.data()['token'][i]['tokenID'];
+        var tokenUses2 = dataUpdate['token'][i]['tokenUses']--;
+    
+        await updateDoc(docRef2, {
+          token: arrayRemove(
+            {
+              seed: seed,
+              tokenID: tokenID,
+              tokenUses: tokenUses1
+            }
+          )
+        });
+        await updateDoc(docRef2, {
+          token: arrayUnion(
+            {
+              seed: seed,
+              tokenID: tokenID,
+              tokenUses: tokenUses2
+            }
+          )
+        });
+
+      }
+    }
+
+    navigate(`/SurveyComplete?id=${queryParameters.get("id")}`);
     
   };
 

@@ -32,18 +32,15 @@ const InformedConsent = () => {
         console.log(docName);
         if(parseInt(docName) > parseInt(max)) {
           max = doc.id;
-          console.log(max);
         } 
       
       });
-      console.log(max);
       max = parseInt(max) + 1;
       } catch(error) {
         console.log(error);
     }
     
     const id = '' + max;
-    console.log(id);
     
     const docRef = doc(db, "Main", id);
     let genCode = genRanHex(6);

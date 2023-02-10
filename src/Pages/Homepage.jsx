@@ -12,15 +12,15 @@ const Homepage = () => {
   // Prefereably, we dont just hardcode a cap here and instead implement this when sharing the codes at the end
   let id = queryParameters.get("id");
   const codeValid = (async (passedToken) => {
-
-    const docRef = doc(db, "Codes", "Invitation_tokens");
+  let validToken = false;
+  const docRef = doc(db, "Codes", "Invitation_tokens");
 
     try {
       const snap = await getDoc(docRef);
-      console.log(snap.data());
+      //console.log(snap.data());
       
       var i;
-      let validToken = false;
+      
 
       for(i = 0; i < snap.data()['token'].length; i++) {
         
@@ -28,36 +28,7 @@ const Homepage = () => {
         var tokenUses = snap.data()['token'][i]['tokenUses'];
         
         if(passedToken == token) {
-
           if(tokenUses > 0) {
-            //Add anonymous sign in
-            var dataUpdate = snap.data();
-            
-            console.log(dataUpdate)
-            var seed = dataUpdate['token'][i]['seed'];
-            var tokenID = dataUpdate['token'][i]['tokenID'];
-            var tokenUses1 = dataUpdate['token'][i]['tokenUses']--;
-            var tokenUses2 = dataUpdate['token'][i]['tokenUses']--;
-            // This needs to be fixed
-            await updateDoc(docRef, {
-              token: arrayRemove(
-                {
-                  seed: seed,
-                  tokenID: tokenID,
-                  tokenUses: tokenUses1
-                }
-              )
-            });
-            await updateDoc(docRef, {
-              token: arrayUnion(
-                {
-                  seed: seed,
-                  tokenID: tokenID,
-                  tokenUses: tokenUses2
-                }
-              )
-            });
-
             validToken = true;
             console.log("Token is valid");
             navigate(`/InformedConsent?parentID=${id}&tokenID=${passedToken}`);
@@ -65,21 +36,24 @@ const Homepage = () => {
           }
 
           else {
-            navigate("/TokenAlreadyUsed")
+            navigate("/TokenAlreadyUsed");
           }
 
         }
       }
-      if (!validToken) {
-        navigate("/InvalidToken");
-      }
-      // Link to error page
+
+
 
 
 
       } catch(error) {
         console.log(error)
         }
+
+      if (!validToken) {
+        navigate("/InvalidToken");
+      }
+      // Link to error page
   });
 
   codeValid(token);
