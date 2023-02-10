@@ -77,8 +77,8 @@ const InformedConsent = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen dark:bg-slate-900 dark:text-white pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56 gap-10">
-      <h1 className="text-green-500 text-4xl">
+    <div className="flex flex-col justify-center items-center min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56 gap-10">
+      <h1 className="text-appOrange text-4xl">
         Increasing the Effectiveness of Respondent-Driven Sampling by Surveying
         the Experiences of Women in STEM
       </h1>
@@ -119,27 +119,27 @@ const InformedConsent = () => {
           time.
         </li>
       </ol>
-      <div>
+      <div className="bg-appOrange p-3 rounded-md text-white">
         <label>Check to confirm that you consent</label>
         <input
           id="consent"
           type="checkbox"
-          className="accent-green-500 ml-3"
+          className="accent-appBlue ml-3"
           required
           onChange={(e) => checkItem(e)}
           defaultChecked={check}
         ></input>
       </div>
       {
-        check && (
+        
           <button
-            className="bg-green-500 active:bg-green-800 rounded-md text-white p-3 disabled:bg-green-800 disabled:cursor-not-allowed"
+            className="bg-appOrange rounded-3xl text-white p-3 disabled:bg-gray-500 disabled:cursor-not-allowed transition-all w-1/5"
             onClick={() => generateUser()}
             disabled={!check}
           >
             Continue
           </button>
-        )
+        
         /* </Link> */
       }
     </div>

@@ -35,24 +35,29 @@ const MCQuestion = (props) => {
     }
   };
 
+  const clickRadio = () => {
+    
+  }
+
   const questions = props.options.map((answer, index) => (
-    <div key={index}>
+    <div key={index} className="bg-appOrange p-1 rounded-md" onClick={() => clickRadio(props.question + index)}>
       <input
+        id={props.question + index}
         type="radio"
         value={answer}
-        className="accent-blue-600 text-black border border-green-400"
+        className="text-black border border-green-400 opacity-0"
         name={props.name}
         onChange={(answer) => handleChange(answer)}
         required
       ></input>
-      <label className="ml-2">{answer}</label>
+      <label className="ml-2 text-white" for={props.question + index}>{answer}</label>
       {checkForOther(answer) && (
         <>
           <br></br>
           <input
             id={answer}
             placeholder="Place answer here"
-            className={`dark:text-black border-2 ${colors.bg} rounded-md focus:border-2 focus:outline-blue-600 hover:outline-blue-600 pr-1 pl-1 ml-6`}
+            className={`dark:text-black border-b-2 ${colors.bg} focus:border-2 focus:outline-appBlue hover:outline-appBlue pr-1 pl-1 ml-6 transition-all`}
             disabled={showOption}
             name={inputName}
             required
@@ -63,12 +68,10 @@ const MCQuestion = (props) => {
     </div>
   ));
   return (
-    <div>
-      <h2 className="font-bold text-lg dark:text-green-500">
-        {props.question}
-      </h2>
+    <fieldset className="flex flex-col gap-3 border border-appBlue rounded-md p-3">
+      <legend className="font-bold text-lg">{props.question}</legend>
       {questions}
-    </div>
+    </fieldset>
   );
 };
 

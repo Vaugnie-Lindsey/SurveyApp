@@ -131,13 +131,13 @@ const SurveyPage = () => {
 
   return (
     <form
-      className="w-screen flex items-center justify-center dark:bg-slate-900 dark:text-white min-h-screen"
+      className="w-screen flex items-center justify-center min-h-screen"
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="flex flex-col gap-10 pt-16 pb-16 w-3/5">
         <div>
           <h1 className="text-bold text-4xl">Background</h1>
-          <div className="w-auto h-1 bg-black dark:bg-white"></div>
+          <div className="w-auto h-1 bg-black"></div>
         </div>
         <MCQuestion
           options={["Text", "Email", "Facebook", "Twitter", "Instagram", "Other (Please Specify)"]}
@@ -159,12 +159,12 @@ const SurveyPage = () => {
             "Native Hawaiian or Other Pacific Islander",
             "Other (Please Specify)",
           ]}
-          question="3. What is your ethnicity/demographic"
+          question="3. What is your ethnicity/demographic?"
           name="ethnicity"
         />
         <MCQuestion
           options={["Yes", "No"]}
-          question="4. Are you a student"
+          question="4. Are you a student?"
           name="student"
         />
         <MCQuestion
@@ -204,7 +204,7 @@ const SurveyPage = () => {
         />
         <div>
           <h1 className="text-bold text-4xl">Experiences</h1>
-          <div className="w-auto h-1 bg-black dark:bg-white"></div>
+          <div className="w-auto h-1 bg-black"></div>
         </div>
         <MCQuestion
           options={[
@@ -243,7 +243,7 @@ const SurveyPage = () => {
         />
         <div>
           <h1 className="text-bold text-4xl">Scale</h1>
-          <div className="w-auto h-1 bg-black dark:bg-white"></div>
+          <div className="w-auto h-1 bg-black"></div>
           <p>
             Please indicate how much you agree with each following statement:
           </p>
@@ -262,7 +262,7 @@ const SurveyPage = () => {
           question="17. The following factor influenced your decision to study your major / degree:"
           name="factors"
         />
-        <button className="bg-green-500 hover:bg-green-800 rounded-sm w-1/5 text-white p-2 self-end transition-all">
+        <button className="bg-appOrange rounded-3xl w-1/5 text-white p-2 self-end transition-all">
           submit
         </button>
       </div>

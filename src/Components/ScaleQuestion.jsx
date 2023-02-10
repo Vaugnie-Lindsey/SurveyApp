@@ -9,24 +9,23 @@ const ScaleQuestion = (props) => {
     "Strongly Agree",
   ];
   const questions = options.map((answer, index) => (
-    <div key={index}>
+    <div key={index} className="bg-appOrange h-20 w-24 p-1 rounded-md text-white">
       <input
+        id={props.question + index}
         type="radio"
         value={answer}
         name={props.name}
-        className="accent-blue-600"
+        className=""
         required
       ></input>
-      <label className="ml-2">{answer}</label>
+      <label className="ml-2" for={props.question + index}>{answer}</label>
     </div>
   ));
   return (
-    <div>
-      <h2 className="font-bold text-lg dark:text-green-500">
-        {props.question}
-      </h2>
-      <div className="flex flex-col md:flex-row gap-2">{questions}</div>
-    </div>
+    <fieldset className="border border-appBlue rounded-md p-3">
+      <legend className="font-bold text-lg">{props.question}</legend>
+      <div className="flex flex-row flex-wrap gap-2 justify-center">{questions}</div>
+    </fieldset>
   );
 };
 

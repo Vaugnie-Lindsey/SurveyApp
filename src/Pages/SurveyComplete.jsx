@@ -73,7 +73,7 @@ const SurveyComplete = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5 dark:bg-slate-900 dark:text-white min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56">
+    <div className="flex flex-col justify-center items-center gap-5 min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56">
       <h1 className="dark:text-green-500 text-4xl">
         The survey is now complete!
       </h1>
@@ -83,6 +83,10 @@ const SurveyComplete = () => {
         For each person that you share it to (up to three) you can recieve an addition $5 Starbucks gift code per person. All gift codes will be sent seperately.
       </p>
       <div className="flex flex-col sm:flex-row gap-2 p-2">
+        <p>Please provide your phone number so that we can send you your rewards!</p>
+        <input type="text"></input>
+      </div>
+      <div className="flex flex-col sm:flex-row gap-2 p-2">
         <div className="pl-2 pr-2 pt-1 pb-1 border-2 border-blue-400 rounded-md min-w-prose">
           <p>{url}</p>
         </div>
@@ -91,7 +95,7 @@ const SurveyComplete = () => {
       {navigator.share &&
       <button
         onClick={() => openShare()}
-        className="bg-green-500 p-3 rounded-sm active:bg-green-800"
+        className="bg-appOrange rounded-3xl p-2 w-1/5 text-white"
       >
         Share Link
       </button>}
