@@ -124,7 +124,7 @@ const InformedConsent = () => {
         <input
           id="consent"
           type="checkbox"
-          className="accent-appPink ml-3"
+          className="accent-app ml-3"
           required
           onChange={(e) => checkItem(e)}
           defaultChecked={check}
