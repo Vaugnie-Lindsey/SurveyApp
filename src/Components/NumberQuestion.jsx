@@ -1,31 +1,32 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 const NumberQuestion = (props) => {
-
   const [colors, setColors] = useState({
-    bg: "border-green-500"
+    bg: "border-green-500",
   });
 
-  const [error, setError] = useState({isError: false, message: ""});
+  const [error, setError] = useState({ isError: false, message: "" });
 
   const checkForInput = (e) => {
     console.log(e.target.value);
     console.log(isNaN(parseInt(e.target.value)));
     if (e.target.value == "") {
-      setError({isError: true, message: "This field requires a value"});
-      setColors({bg: "border-red-500"});
-    } else if (isNaN(parseInt(e.target.value))){
-      setError({isError: true, message: "This field requires a number"});
-      setColors({bg: "border-red-500"});
+      setError({ isError: true, message: "This field requires a value" });
+      setColors({ bg: "border-red-500" });
+    } else if (isNaN(parseInt(e.target.value))) {
+      setError({ isError: true, message: "This field requires a number" });
+      setColors({ bg: "border-red-500" });
     } else {
-      setError({isError: false, message: ""});
-      setColors({bg: "border-green-500"});
+      setError({ isError: false, message: "" });
+      setColors({ bg: "border-green-500" });
     }
-  }
+  };
 
   return (
     <fieldset className="border-2 border-appPink rounded-md p-3">
-      <legend className="font-bold text-lg text-appPurple">{props.question}</legend>
+      <legend className="font-bold text-lg text-appPurple">
+        {props.question}
+      </legend>
       <input
         name={props.name}
         type="text"

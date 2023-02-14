@@ -1,47 +1,52 @@
-import {useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import db from "../firebase";
-import { getFirestore, doc, setDoc, getDocs, query, collection, getDoc, updateDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDocs,
+  query,
+  collection,
+  getDoc,
+  updateDoc,
+} from "firebase/firestore";
 import React, { useState } from "react";
 import { assignTokenId } from "../DataFunctions";
-
 
 const InformedConsent = () => {
   const navigate = useNavigate();
   const [queryParameters] = useSearchParams();
   const [check, setCheck] = useState(false);
 
-
-  const generateUser = (async() => {
+  const generateUser = async () => {
     queryParameters.get("tokenID");
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
-    [...Array(size)]
-      .map(() => Math.floor(Math.random() * 16).toString(16))
-      .join("");
-
+      [...Array(size)]
+        .map(() => Math.floor(Math.random() * 16).toString(16))
+        .join("");
 
     // Here the ids in the db are checked an the new id is set to the max+1. Idk, there is prob a better way to do this....
     const q = query(collection(db, "Main"));
     let max = Number.MIN_SAFE_INTEGER;
     try {
       const snap = await getDocs(q);
-      
+
       snap.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         const docName = doc.id;
         console.log(docName);
-        if(parseInt(docName) > parseInt(max)) {
+        if (parseInt(docName) > parseInt(max)) {
           max = doc.id;
-        } 
-      
+        }
       });
       max = parseInt(max) + 1;
-      } catch(error) {
-        console.log(error);
+    } catch (error) {
+      console.log(error);
     }
-    
-    const id = '' + max;
-    
+
+    const id = "" + max;
+
     const docRef = doc(db, "Main", id);
     let genCode = genRanHex(6);
 
@@ -55,21 +60,20 @@ const InformedConsent = () => {
       phone: 0,
       survey_completed: false,
       response: {},
-      consent: true
+      consent: true,
     };
     setDoc(docRef, data)
-    .then(() => {
-      console.log("New user added successfully");
-    })
-    .catch(error => {
-      console.log(error);
-    })
+      .then(() => {
+        console.log("New user added successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     // make sure users cant go back to the previous page and/or add more than one user to db.
     let url = `/SurveyPage?id=${id}`;
     navigate(url);
-
-  });
+  };
 
   const checkItem = (e) => {
     console.log(e.target.checked);
@@ -124,22 +128,21 @@ const InformedConsent = () => {
         <input
           id="consent"
           type="checkbox"
-          className="accent-app ml-3"
+          className="accent-appPink ml-3"
           required
           onChange={(e) => checkItem(e)}
           defaultChecked={check}
         ></input>
       </div>
       {
-        
-          <button
-            className="bg-appPink rounded-3xl text-appPurple p-3 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-black transition-all w-1/5 font-bold"
-            onClick={() => generateUser()}
-            disabled={!check}
-          >
-            Continue
-          </button>
-        
+        <button
+          className="bg-appPink rounded-3xl text-appPurple p-3 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-black transition-all w-1/5 font-bold"
+          onClick={() => generateUser()}
+          disabled={!check}
+        >
+          Continue
+        </button>
+
         /* </Link> */
       }
     </div>

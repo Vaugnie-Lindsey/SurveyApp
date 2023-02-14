@@ -4,7 +4,15 @@ import NumberQuestion from "../Components/NumberQuestion";
 import ScaleQuestion from "../Components/ScaleQuestion";
 import MultipleScale from "../Components/MultipleScale";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
-import { getFirestore, doc, getDoc, updateDoc, arrayRemove, arrayUnion, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
+  setDoc,
+} from "firebase/firestore";
 import db from "../firebase";
 
 const SurveyPage = () => {
@@ -55,7 +63,7 @@ const SurveyPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     var data = new FormData(e.target);
     let formObject = Object.fromEntries(data.entries());
     console.log(formObject);
@@ -73,49 +81,41 @@ const SurveyPage = () => {
     //console.log(docData);
     // console.log(docRef);
     await updateDoc(docRef, {
-      "survey_completed": true,
-      "response": formObject
-    })
+      survey_completed: true,
+      response: formObject,
+    });
 
     var i;
-    var passedToken = docData['invitation_token']
-    for(i = 0; i < snap.data()['token'].length; i++) {
-        
-      var token = snap.data()['token'][i]['tokenID'];
-      
-      if(passedToken == token) {
+    var passedToken = docData["invitation_token"];
+    for (i = 0; i < snap.data()["token"].length; i++) {
+      var token = snap.data()["token"][i]["tokenID"];
 
+      if (passedToken == token) {
         const dataUpdate = snap.data();
 
-        var seed = dataUpdate['token'][i]['seed'];
-        var tokenUses1 = dataUpdate['token'][i]['tokenUses']--;
-        var tokenID = snap.data()['token'][i]['tokenID'];
-        var tokenUses2 = dataUpdate['token'][i]['tokenUses']--;
-    
-        await updateDoc(docRef2, {
-          token: arrayRemove(
-            {
-              seed: seed,
-              tokenID: tokenID,
-              tokenUses: tokenUses1
-            }
-          )
-        });
-        await updateDoc(docRef2, {
-          token: arrayUnion(
-            {
-              seed: seed,
-              tokenID: tokenID,
-              tokenUses: tokenUses2
-            }
-          )
-        });
+        var seed = dataUpdate["token"][i]["seed"];
+        var tokenUses1 = dataUpdate["token"][i]["tokenUses"]--;
+        var tokenID = snap.data()["token"][i]["tokenID"];
+        var tokenUses2 = dataUpdate["token"][i]["tokenUses"]--;
 
+        await updateDoc(docRef2, {
+          token: arrayRemove({
+            seed: seed,
+            tokenID: tokenID,
+            tokenUses: tokenUses1,
+          }),
+        });
+        await updateDoc(docRef2, {
+          token: arrayUnion({
+            seed: seed,
+            tokenID: tokenID,
+            tokenUses: tokenUses2,
+          }),
+        });
       }
     }
 
     navigate(`/SurveyComplete?id=${queryParameters.get("id")}`);
-    
   };
 
   const checkForComplete = () => {
@@ -126,9 +126,9 @@ const SurveyPage = () => {
     if (complete) {
       //will need to grab tokenID from user to pass to next area
       //or can have survey complete page deal with that and not utilize the URL
-      navigate(`/SurveyComplete?code=${queryParameters.get("id")}`)
+      navigate(`/SurveyComplete?code=${queryParameters.get("id")}`);
     }
-  }
+  };
 
   return (
     <form
@@ -141,7 +141,14 @@ const SurveyPage = () => {
           <div className="w-auto h-1 bg-black"></div>
         </div>
         <MCQuestion
-          options={["Text", "Email", "Facebook", "Twitter", "Instagram", "Other (Please Specify)"]}
+          options={[
+            "Text",
+            "Email",
+            "Facebook",
+            "Twitter",
+            "Instagram",
+            "Other (Please Specify)",
+          ]}
           question="How were you referred here?"
           name="refer"
         />
