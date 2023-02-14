@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { getFirestore, doc, getDoc, updateDoc, arrayRemove, arrayUnion } from "firebase/firestore";
 import db from "../firebase";
@@ -6,6 +6,7 @@ import db from "../firebase";
 const Homepage = () => {
   let navigate = useNavigate();
   const [queryParameters] = useSearchParams();
+  const [showButton, setShowButton] = useState(false);
   let token = queryParameters.get("tokenID");
 
   // Remember, tokens can only be used 3 times, so a system needs to put in place for this.
@@ -56,12 +57,16 @@ const Homepage = () => {
       // Link to error page
   });
 
-  codeValid(token);
+  // codeValid(token);
 
   return (
     <div className="flex flex-col justify-center items-center gap-5 min-h-screen">
-      <h1 className="text-4xl text-appOrange">Loading...</h1>
+      <h1 className="text-4xl text-appPurple">Loading...</h1>
       <div className="rounded-full w-20 h-20 bg-white flex flex-col justify-center items-center"><div className="animate-spin rounded-full w-20 h-20 border-l-4 border-l-appBlue"></div></div>
+      <h1 className="text-4xl text-appPurple">Have a Coffee on Us</h1>
+      <p>Take our Women in Stem Survey and get rewarded!</p>
+      <p>You'll receive a $5 gift card (Starbucks, Amazon, etc.). Refer up to 3 other women in STEM for an additional $5 each, for a total of up to $20</p>
+      <button className="bg-appPink text-appPurple font-bold p-3 rounded-3xl hover:text-appPink hover:bg-appPurple transition-all" onClick={() => codeValid(token)}>Get Started</button>
       {/* <h1 className="text-green-500 text-4xl">Have a Coffee on Us</h1>
       <input
         id='form'

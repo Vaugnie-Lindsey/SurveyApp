@@ -6,7 +6,9 @@ module.exports = {
       colors: {
         appOrange: "#DE5935",
         appYellow: "#F7CD46",
-        appBlue: "#5AC3B0"
+        appBlue: "#5AC3B0",
+        appPink: "#ffd9d9",
+        appPurple: "#5928e5"
       }
     },
   },

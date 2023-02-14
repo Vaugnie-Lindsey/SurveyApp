@@ -39,11 +39,11 @@ const SurveyComplete = () => {
         await updateDoc(user, {
           child_token: token
         });
-        setUrl(`http://localhost:3000/?id=${id}&tokenID=${token}`);
+        setUrl(`${window.location.origin}?id=${id}&tokenID=${token}`);
       } else {
         let existingToken = moreData.child_token;
         console.log("old person");
-        setUrl(`http://localhost:3000/?id=${id}&tokenID=${existingToken}`);
+        setUrl(`${window.location.origin}/?id=${id}&tokenID=${existingToken}`);
       }
       console.log(getDoc(user));
       console.log(moreData);
@@ -56,7 +56,7 @@ const SurveyComplete = () => {
   // const url = `http://localhost:3000/Homepage?tokenID=${tokenID}`;
   const shareData = {
     title: "Women In STEM Study",
-    text: "Earn up to $10!",
+    text: "Earn up to $20!",
     url: url,
   };
 
@@ -74,10 +74,10 @@ const SurveyComplete = () => {
 
   return (
     <div className="flex flex-col justify-center items-center gap-5 min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56">
-      <h1 className="dark:text-green-500 text-4xl">
+      <h1 className="text-appPurple text-4xl">
         The survey is now complete!
       </h1>
-      <h2 className="items-center dark:text-green-500 text-2xl">Have a coffee on us.</h2>
+      <h2 className="items-center text-appPurple text-2xl">Have a coffee on us.</h2>
       <p>
         Thank you for participating in our survey. You will be sent a $5 Starbucks gift code via text within the next 2 days . We ask that you please use the link below to invite other Women in STEM to take this survey as well. 
         For each person that you share it to (up to three) you can recieve an addition $5 Starbucks gift code per person. All gift codes will be sent seperately.
@@ -87,15 +87,15 @@ const SurveyComplete = () => {
         <input type="text"></input>
       </div>
       <div className="flex flex-col sm:flex-row gap-2 p-2">
-        <div className="pl-2 pr-2 pt-1 pb-1 border-2 border-blue-400 rounded-md min-w-prose">
+        <div className="pl-2 pr-2 pt-1 pb-1 border-2 border-appPink rounded-md min-w-prose flex flex-row gap-3 items-center">
           <p>{url}</p>
+          <button className="border-2 border-appPurple pl-2 pr-2 pt-1 pb-1 rounded-md" onClick={() => copyLink()}>{copyLabel}</button>
         </div>
-        <button className="border-2 border-green-500 pl-2 pr-2 pt-1 pb-1 rounded-md" onClick={() => copyLink()}>{copyLabel}</button>
       </div>
       {navigator.share &&
       <button
         onClick={() => openShare()}
-        className="bg-appOrange rounded-3xl p-2 w-1/5 text-white"
+        className="bg-appPurple rounded-3xl p-2 w-1/5 text-appPink hover:bg-appPink hover:text-appPurple font-bold transition-all"
       >
         Share Link
       </button>}

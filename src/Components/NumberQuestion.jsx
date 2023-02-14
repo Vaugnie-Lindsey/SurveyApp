@@ -24,8 +24,8 @@ const NumberQuestion = (props) => {
   }
 
   return (
-    <fieldset className="border border-appBlue rounded-md p-3">
-      <legend className="font-bold text-lg">{props.question}</legend>
+    <fieldset className="border-2 border-appPink rounded-md p-3">
+      <legend className="font-bold text-lg text-appPurple">{props.question}</legend>
       <input
         name={props.name}
         type="text"

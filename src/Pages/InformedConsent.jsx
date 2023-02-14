@@ -119,12 +119,12 @@ const InformedConsent = () => {
           time.
         </li>
       </ol>
-      <div className="bg-appOrange p-3 rounded-md text-white">
+      <div className="bg-appPurple p-3 rounded-md text-appPink font-bold">
         <label>Check to confirm that you consent</label>
         <input
           id="consent"
           type="checkbox"
-          className="accent-appBlue ml-3"
+          className="accent-appPink ml-3"
           required
           onChange={(e) => checkItem(e)}
           defaultChecked={check}
@@ -133,7 +133,7 @@ const InformedConsent = () => {
       {
         
           <button
-            className="bg-appOrange rounded-3xl text-white p-3 disabled:bg-gray-500 disabled:cursor-not-allowed transition-all w-1/5"
+            className="bg-appPink rounded-3xl text-appPurple p-3 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-black transition-all w-1/5 font-bold"
             onClick={() => generateUser()}
             disabled={!check}
           >

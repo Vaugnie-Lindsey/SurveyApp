@@ -58,6 +58,7 @@ const SurveyPage = () => {
   
     var data = new FormData(e.target);
     let formObject = Object.fromEntries(data.entries());
+    console.log(formObject);
     //console.log(formObject);
     //console.log(formObject.name);
     let id = queryParameters.get("id");
@@ -262,7 +263,7 @@ const SurveyPage = () => {
           question="17. The following factor influenced your decision to study your major / degree:"
           name="factors"
         />
-        <button className="bg-appOrange rounded-3xl w-1/5 text-white p-2 self-end transition-all">
+        <button className="bg-appPurple rounded-3xl w-2/5 md:w-1/5 text-appPink font-bold p-2 self-end transition-all hover:bg-appPink hover:text-appPurple">
           submit
         </button>
       </div>
