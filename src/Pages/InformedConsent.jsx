@@ -82,7 +82,7 @@ const InformedConsent = () => {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56 gap-10">
-      <h1 className="text-appOrange text-4xl">
+      <h1 className="text-appPurple text-2xl md:text-4xl">
         Increasing the Effectiveness of Respondent-Driven Sampling by Surveying
         the Experiences of Women in STEM
       </h1>
@@ -136,7 +136,7 @@ const InformedConsent = () => {
       </div>
       {
         <button
-          className="bg-appPink rounded-3xl text-appPurple p-3 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-black transition-all w-1/5 font-bold hover:shadow-appPurple hover:shadow"
+          className="bg-appPink rounded-3xl text-appPurple p-3 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-black transition-all md:w-1/5 font-bold hover:shadow-appPurple hover:shadow"
           onClick={() => generateUser()}
           disabled={!check}
         >

@@ -135,7 +135,7 @@ const SurveyPage = () => {
       className="w-screen flex items-center justify-center min-h-screen"
       onSubmit={(e) => handleSubmit(e)}
     >
-      <div className="flex flex-col gap-10 pt-16 pb-16 w-3/5">
+      <div className="flex flex-col gap-10 pt-16 pb-16 w-3/5 justify-center items-center">
         <div>
           <h1 className="text-bold text-4xl">Background</h1>
           <div className="w-auto h-1 bg-black"></div>

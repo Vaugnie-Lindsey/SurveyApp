@@ -57,7 +57,7 @@ const Homepage = () => {
   // codeValid(token);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5 min-h-screen">
+    <div className="flex flex-col justify-center items-center gap-5 min-h-screen mx-3">
       <h1 className="text-4xl text-appPurple">Loading...</h1>
       <div className="rounded-full w-20 h-20 bg-white flex flex-col justify-center items-center">
         <div className="animate-spin rounded-full w-20 h-20 border-l-4 border-l-appBlue"></div>

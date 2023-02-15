@@ -78,7 +78,7 @@ const SurveyComplete = () => {
 
   return (
     <div className="flex flex-col justify-center items-center gap-5 min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56">
-      <h1 className="text-appPurple text-4xl">The survey is now complete!</h1>
+      <h1 className="text-appPurple text-4xl text-center">The survey is now complete!</h1>
       <h2 className="items-center text-appPurple text-2xl">
         Have a coffee on us.
       </h2>
@@ -110,7 +110,7 @@ const SurveyComplete = () => {
       {navigator.share && (
         <button
           onClick={() => openShare()}
-          className="bg-appPurple rounded-3xl p-2 w-1/5 text-appPink hover:bg-appPink hover:text-appPurple font-bold transition-all"
+          className="bg-appPurple rounded-3xl p-2 sm:w-3/5 md:w-1/5 text-appPink hover:bg-appPink hover:text-appPurple font-bold transition-all"
         >
           Share Link
         </button>
