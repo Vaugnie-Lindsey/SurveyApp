@@ -136,7 +136,7 @@ const InformedConsent = () => {
       </div>
       {
         <button
-          className="bg-appPink rounded-3xl text-appPurple p-3 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-black transition-all w-1/5 font-bold"
+          className="bg-appPink rounded-3xl text-appPurple p-3 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-black transition-all w-1/5 font-bold hover:shadow-appPurple hover:shadow"
           onClick={() => generateUser()}
           disabled={!check}
         >

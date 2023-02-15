@@ -19,7 +19,7 @@ const MCQuestion = (props) => {
 
   const checkIfSelected = (answer) => {
     if (answer === focus) {
-      return "bg-appPink text-appPurple shadow-sm shadow-appPurple font-bold";
+      return "bg-appPink text-appPurple border-2 border-appPurple font-bold";
     } else {
       return "bg-gray-200 hover:bg-appPink hover:text-appPurple hover:font-bold hover:shadow hover:shadow-appPurple hover:accent-appPurple hover:opacity-100 opacity-50";
     }
