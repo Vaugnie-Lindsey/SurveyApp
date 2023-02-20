@@ -54,7 +54,7 @@ const MCQuestion = (props) => {
   const questions = props.options.map((answer, index) => (
     <div
       key={index}
-      className={`${checkIfSelected(answer)} p-1 rounded-md transition-all`}
+      className={`${checkIfSelected(answer)} p-1 rounded-md transition-all cursor-pointer`}
       onClick={() => handleChange(answer)}
     >
       <input
@@ -67,17 +67,17 @@ const MCQuestion = (props) => {
         checked={otherCheckIfSelected(answer)}
         required
       ></input>
-      <label className="ml-2" for={props.question + index}>
+      <label className="cursor-pointer mr-2 text-center" for={props.question + index}>
         {answer}
       </label>
       {checkForOther(answer) && (
         <>
           <br></br>
-          <div className="h-2 bg-appPink"></div>
+          <div className="h-2"></div>
           <input
             id={answer}
             placeholder="Place answer here"
-            className={`dark:text-black border-b-2 ${colors.bg} focus:outline-none pr-1 pl-1 ml-6 transition-all`}
+            className={`dark:text-black border-b-2 ${colors.bg} focus:outline-none pr-1 pl-1 ml-6 transition-all font-normal`}
             disabled={showOption}
             name={inputName}
             required

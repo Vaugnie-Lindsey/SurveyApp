@@ -4,9 +4,9 @@ const ScaleQuestion = (props) => {
   const [focus, SetFocus] = useState("");
   const checkIfSelected = (answer) => {
     if (answer === focus) {
-      return "bg-appPink text-appPurple shadow shadow-appPurple font-bold";
+      return "bg-appPink text-appPurple border-2 border-appPurple font-bold";
     } else {
-      return "bg-gray-200 hover:bg-appPink hover:text-appPurple hover:font-bold";
+      return "bg-gray-200 hover:bg-appPink hover:text-appPurple hover:font-bold hover:shadow hover:shadow-appPurple hover:accent-appPurple hover:opacity-100 opacity-50";
     }
   };
 
@@ -30,7 +30,7 @@ const ScaleQuestion = (props) => {
       key={index}
       className={`${checkIfSelected(
         answer
-      )} h-20 w-28 p-1 rounded-md transition-all flex flex-col-reverse items-center justify-center`}
+      )} h-20 w-28 p-1 rounded-md transition-all flex flex-col-reverse items-center justify-center cursor-pointer`}
       onClick={() => SetFocus(answer)}
     >
       <input
@@ -43,7 +43,7 @@ const ScaleQuestion = (props) => {
         checked={otherCheckIfSelected(answer)}
         required
       ></input>
-      <label className="text-center" for={props.question + index}>
+      <label className="text-center cursor-pointer" for={props.question + index}>
         {answer}
       </label>
     </div>

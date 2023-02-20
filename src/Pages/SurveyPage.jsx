@@ -63,7 +63,8 @@ const SurveyPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(e);
+    console.log(e.target);
     var data = new FormData(e.target);
     let formObject = Object.fromEntries(data.entries());
     console.log(formObject);
@@ -132,10 +133,10 @@ const SurveyPage = () => {
 
   return (
     <form
-      className="w-screen flex items-center justify-center min-h-screen"
+      className="w-screen flex items-stretch justify-center min-h-screen"
       onSubmit={(e) => handleSubmit(e)}
     >
-      <div className="flex flex-col gap-10 pt-16 pb-16 w-3/5 justify-center items-center">
+      <div className="flex flex-col gap-10 pt-16 pb-16 w-4/5 md:w-3/5 justify-center items-center sm:items-stretch">
         <div>
           <h1 className="text-bold text-4xl">Background</h1>
           <div className="w-auto h-1 bg-black"></div>
