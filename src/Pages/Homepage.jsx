@@ -9,11 +9,12 @@ import {
   arrayUnion,
 } from "firebase/firestore";
 import db from "../firebase";
+import Loading from "../Components/Loading";
 
 const Homepage = () => {
   let navigate = useNavigate();
   const [queryParameters] = useSearchParams();
-  const [showButton, setShowButton] = useState(false);
+  const [showLoading, setLoading] = useState(false);
   let token = queryParameters.get("tokenID");
 
   // Remember, tokens can only be used 3 times, so a system needs to put in place for this.
@@ -21,6 +22,7 @@ const Homepage = () => {
   let id = queryParameters.get("id");
   const codeValid = async (passedToken) => {
     let validToken = false;
+    setLoading(true);
     const docRef = doc(db, "Codes", "Invitation_tokens");
 
     try {
@@ -49,7 +51,7 @@ const Homepage = () => {
     }
 
     if (!validToken) {
-      navigate("/InvalidToken");
+      // navigate("/InvalidToken");
     }
     // Link to error page
   };
@@ -58,10 +60,6 @@ const Homepage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center gap-5 min-h-screen mx-3">
-      {/* <h1 className="text-4xl text-appPurple">Loading...</h1>
-      <div className="rounded-full w-20 h-20 bg-white flex flex-col justify-center items-center">
-        <div className="animate-spin rounded-full w-20 h-20 border-l-4 border-l-appBlue"></div>
-      </div> */}
       <h1 className="text-4xl text-appPurple">Have a Coffee on Us</h1>
       <p>Take our Women in Stem Survey and get rewarded!</p>
       <p>
@@ -69,10 +67,10 @@ const Homepage = () => {
         other women in STEM for an additional $5 each, for a total of up to $20
       </p>
       <button
-        className="bg-appPink text-appPurple font-bold p-3 rounded-3xl hover:text-appPink hover:bg-appPurple transition-all"
+        className="bg-appPink text-appPurple font-bold p-3 rounded-3xl hover:text-appPink hover:bg-appPurple active:translate-y-3 transition-all"
         onClick={() => codeValid(token)}
       >
-        Get Started
+        {showLoading ? <Loading /> : "Get Started"}
       </button>
     </div>
   );
