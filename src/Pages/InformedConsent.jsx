@@ -12,13 +12,36 @@ import {
 } from "firebase/firestore";
 import React, { useState } from "react";
 import { assignTokenId } from "../DataFunctions";
+import PhoneInput, { isPossiblePhoneNumber } from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+
 
 const InformedConsent = () => {
   const navigate = useNavigate();
   const [queryParameters] = useSearchParams();
   const [check, setCheck] = useState(false);
+  const [mobile, setMobile] = useState();
 
-  const generateUser = async () => {
+  
+  const generateUser = async(phoneNumber) => {
+  
+    // check the phone number to see if it already exists
+    const snapshot = query(collection(db, "Main"));
+    const snap = await getDocs(snapshot);
+    snap.forEach((doc) => {
+     if(doc.data()['phone'] == phoneNumber) {
+       // if pre-existing user has finished survey, skip creating new user and take them to the end
+       if(doc.data()['survey_completed'] == true) {
+         navigate(`/SurveyComplete?id=${doc.data()['id']}`);
+       }
+       // if pre-existing user has not finished survey, skip creating new user and take them back to survey
+       else {
+         let url = `/SurveyPage?id=${doc.data()['id']}`;
+         navigate(url);
+       }
+       
+     }
+   });
     queryParameters.get("tokenID");
     //Generates random hex code to create unique ID
     const genRanHex = (size) =>
@@ -35,7 +58,7 @@ const InformedConsent = () => {
       snap.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         const docName = doc.id;
-        console.log(docName);
+        //console.log(docName);
         if (parseInt(docName) > parseInt(max)) {
           max = doc.id;
         }
@@ -57,7 +80,7 @@ const InformedConsent = () => {
       invited_by: " ",
       child_token: " ",
       parentID: queryParameters.get("parentID"),
-      phone: 0,
+      phone: mobile,
       survey_completed: false,
       response: {},
       consent: true,
@@ -122,7 +145,12 @@ const InformedConsent = () => {
           you are otherwise entitled. You may withdraw from this study at any
           time.
         </li>
+        <li>
+          This survey was approved by SIUE IRB; Protocol 1755
+        </li>
       </ol>
+
+     
       <div className="bg-appPurple p-3 rounded-md text-appPink font-bold">
         <label>Check to confirm that you consent</label>
         <input
@@ -131,18 +159,34 @@ const InformedConsent = () => {
           className="accent-appPink ml-3"
           required
           onChange={(e) => checkItem(e)}
+          
           defaultChecked={check}
         ></input>
       </div>
-      {
+
+
+      {        
+    <>
+    <div className="flex flex-col gap-3">
+      <label className= 'font-bold'> Please enter your phone number before continuing if you wish to receive participation rewards for completing the survey. 
+      Your phone number will exclusively be used for receiving gift codes: </label>
+      <PhoneInput
+                country='us'
+                value={mobile}
+                onChange={setMobile}
+                disabled={!check}
+                //error={mobile && isPossiblePhoneNumber(mobile) ? 'true' : 'false'}
+                />
+                
+      </div>
         <button
           className="bg-appPink rounded-3xl text-appPurple p-3 disabled:bg-gray-500 disabled:cursor-not-allowed disabled:text-black transition-all md:w-1/5 font-bold hover:shadow-appPurple hover:shadow"
-          onClick={() => generateUser()}
+          onClick={() => generateUser(mobile)}
           disabled={!check}
         >
           Continue
         </button>
-
+    </>
         /* </Link> */
       }
     </div>
