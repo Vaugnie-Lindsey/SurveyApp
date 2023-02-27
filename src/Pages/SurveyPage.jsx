@@ -16,6 +16,7 @@ import {
 import db from "../firebase";
 
 const SurveyPage = () => {
+  window.moveTo(0);
   const navigate = useNavigate();
   const [queryParameters] = useSearchParams();
   const finalQues = [
@@ -133,7 +134,7 @@ const SurveyPage = () => {
 
   return (
     <form
-      className="w-screen flex items-stretch justify-center min-h-screen"
+      className="w-screen flex items-stretch justify-center min-h-screen scroll-smooth"
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="flex flex-col gap-10 pt-16 pb-16 w-4/5 md:w-3/5 justify-center items-center sm:items-stretch">
