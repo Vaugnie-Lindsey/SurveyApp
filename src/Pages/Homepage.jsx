@@ -51,7 +51,7 @@ const Homepage = () => {
     }
 
     if (!validToken) {
-      // navigate("/InvalidToken");
+      navigate("/InvalidToken");
     }
     // Link to error page
   };

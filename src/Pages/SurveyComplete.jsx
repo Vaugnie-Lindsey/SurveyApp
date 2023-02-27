@@ -105,7 +105,7 @@ const SurveyComplete = () => {
       {navigator.share && (
         <button
           onClick={() => openShare()}
-          className="bg-appPurple rounded-3xl p-2 sm:w-3/5 md:w-1/5 text-appPink hover:bg-appPink hover:text-appPurple font-bold transition-all"
+          className="bg-appPurple rounded-3xl p-2 sm:w-3/5 md:w-1/5 text-appPink hover:bg-appPink hover:text-appPurple active:translate-y-3 font-bold transition-all"
         >
           Share Link
         </button>
