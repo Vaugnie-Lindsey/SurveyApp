@@ -31,7 +31,6 @@ const SurveyComplete = () => {
       const finalData = await getDoc(user);
       const moreData = finalData.data();
       if (moreData.child_token === " ") {
-        console.log("New person");
         await updateDoc(codes, {
           token: arrayUnion({
             seed: false,
@@ -46,11 +45,8 @@ const SurveyComplete = () => {
         setUrl(`${window.location.origin}?id=${id}&tokenID=${token}`);
       } else {
         let existingToken = moreData.child_token;
-        console.log("old person");
         setUrl(`${window.location.origin}/?id=${id}&tokenID=${existingToken}`);
       }
-      console.log(getDoc(user));
-      console.log(moreData);
     };
     getData();
   }, []);
