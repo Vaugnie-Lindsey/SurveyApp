@@ -60,9 +60,9 @@ const Homepage = () => {
   // codeValid(token);
 
   return (
-    <div className="flex flex-col md:flex-row items-start md:justify-around signika">
+    <div className="flex flex-col md:flex-row items-start justify-center md:justify-around signika h-screen">
 <div className="flex flex-col md:justify-center items-center gap-5 md:min-h-screen mx-3 md:w-1/2">
-      <h1 className="text-3xl md:text-6xl text-appPurple text-left signika">Have a Coffee on Us</h1>
+      <h1 className="text-3xl md:text-6xl text-appPurple text-center signika">Have a Coffee on Us</h1>
       <p className="w-9/12 text-black">Take our Women in Stem Survey and recieve a $5 gift card. Additionally, you can refer up to 3 other women in STEM for an additional $5 each, for a total of up to $20.</p>
       {/* <p>Take our Women in Stem Survey and get rewarded!</p>
       <p>
@@ -70,14 +70,14 @@ const Homepage = () => {
         other women in STEM for an additional $5 each, for a total of up to $20
       </p> */}
       <button
-        className="bg-appPink text-appPurple font-bold p-3 rounded-3xl hover:text-appPink hover:bg-appPurple active:translate-y-3 transition-all md:w-1/4 text-center"
+        className="bg-appPink text-appPurple font-bold p-3 rounded-3xl hover:text-appPink hover:bg-appPurple active:translate-y-3 transition-all md:w-1/4 text-center flex flex-row items-center justify-center"
         onClick={() => codeValid(token)}
       >
         {showLoading ? <Loading /> : "Get Started"}
       </button>
     </div>
-    <div className="w-1/2">
-    <img src={werk} className="w-full h-screen object-contain"/>
+    <div className="w-full md:w-1/2">
+    <img src={werk} className="w-full md:h-screen object-contain"/>
     </div>
     </div>
   );
