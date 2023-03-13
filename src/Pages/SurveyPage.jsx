@@ -3,6 +3,7 @@ import MCQuestion from "../Components/MCQuestion";
 import NumberQuestion from "../Components/NumberQuestion";
 import ScaleQuestion from "../Components/ScaleQuestion";
 import MultipleScale from "../Components/MultipleScale";
+import "./SurveyPage.css";
 import { Navigate, useNavigate, useSearchParams } from "react-router-dom";
 import {
   getFirestore,
@@ -16,7 +17,7 @@ import {
 import db from "../firebase";
 
 const SurveyPage = () => {
-  window.moveTo(0);
+  window.scrollTo(0, 0);
   const navigate = useNavigate();
   const [queryParameters] = useSearchParams();
   const finalQues = [
@@ -133,6 +134,7 @@ const SurveyPage = () => {
   };
 
   return (
+    <div className="flex flex-col justify-center items-center signika">
     <form
       className="w-screen flex items-stretch justify-center min-h-screen scroll-smooth"
       onSubmit={(e) => handleSubmit(e)}
@@ -277,6 +279,9 @@ const SurveyPage = () => {
         </button>
       </div>
     </form>
+    <label htmlFor="progress">Progress, Yay!</label>
+    <progress id="progress" max={100} value={90} className="rounded-lg"></progress>
+    </div>
   );
 };
 

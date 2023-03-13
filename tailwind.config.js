@@ -8,7 +8,8 @@ module.exports = {
         appYellow: "#F7CD46",
         appBlue: "#5AC3B0",
         appPink: "#ffd9d9",
-        appPurple: "#5928e5"
+        appPurple: "#5928e5",
+        appTan: "#e1b964"
       }
     },
   },

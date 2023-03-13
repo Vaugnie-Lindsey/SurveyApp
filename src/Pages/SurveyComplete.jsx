@@ -77,18 +77,19 @@ const SurveyComplete = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5 min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56">
-      <h1 className="text-appPurple text-4xl text-center">The survey is now complete!</h1>
+    <div className="flex flex-col justify-center items-center gap-5 min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56 signika">
+      <h1 className="text-appPurple text-4xl text-center">
+        The survey is now complete!
+      </h1>
       <h2 className="items-center text-appPurple text-2xl">
         Have a coffee on us.
       </h2>
       <p>
-        Thank you for participating in our survey. You will be sent your $5 
-        gift code via text message soon. We ask that you
-        please use the link below to invite other Women in STEM to take this
-        survey as well. For each person that you share it to (up to three) you
-        can recieve an addition $5 Starbucks gift code per person. All gift
-        codes will be sent seperately.
+        Thank you for participating in our survey. You will be sent your $5 gift
+        code via text message soon. We ask that you please use the link below to
+        invite other Women in STEM to take this survey as well. For each person
+        that you share it to (up to three) you can recieve an additional $5
+        Starbucks gift code per person. All gift codes will be sent seperately.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-2 p-2">

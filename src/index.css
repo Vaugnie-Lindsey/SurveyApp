@@ -11,6 +11,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@font-face {
+  font-family: "Signika";
+  src: local("Signika"), url("./fonts/SignikaNegative.ttf") format("truetype");
+}
+
+.signika {
+  font-family: "Signika";
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

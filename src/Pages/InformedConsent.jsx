@@ -100,7 +100,7 @@ const InformedConsent = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56 gap-10">
+    <div className="flex flex-col justify-center items-center min-h-screen pt-16 pb-16 pr-16 pl-16 md:pr-56 md:pl-56 gap-10 signika">
       <h1 className="text-appPurple text-2xl md:text-4xl">
         Increasing the Effectiveness of Respondent-Driven Sampling by Surveying
         the Experiences of Women in STEM
