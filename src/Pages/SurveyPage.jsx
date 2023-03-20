@@ -279,8 +279,6 @@ const SurveyPage = () => {
         </button>
       </div>
     </form>
-    <label htmlFor="progress">Progress, Yay!</label>
-    <progress id="progress" max={100} value={90} className="rounded-lg"></progress>
     </div>
   );
 };
