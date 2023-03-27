@@ -85,7 +85,7 @@ const SurveyComplete = () => {
         code via text message soon. We ask that you please use the link below to
         invite other Women in STEM to take this survey as well. For each person
         that you share it to (up to three) you can recieve an additional $5
-        Starbucks gift code per person. All gift codes will be sent seperately.
+        Starbucks or Amazon gift code per person. All gift codes will be sent seperately.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-2 p-2">

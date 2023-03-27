@@ -161,7 +161,7 @@ const InformedConsent = () => {
           <div className="flex flex-col gap-3 justify-center">
             <label className="font-bold">
               {" "}
-              Please enter your phone number before continuing if you wish to
+              Please enter your phone number (US Numbers Only) before continuing if you wish to
               receive participation rewards for completing the survey. Your
               phone number will exclusively be used for receiving gift codes:{" "}
             </label>
