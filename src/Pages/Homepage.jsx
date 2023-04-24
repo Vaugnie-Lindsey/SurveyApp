@@ -22,6 +22,7 @@ const Homepage = () => {
   // Prefereably, we dont just hardcode a cap here and instead implement this when sharing the codes at the end
   let id = queryParameters.get("id");
   const codeValid = async (passedToken) => {
+    navigate("/TokenAlreadyUsed");
     let validToken = false;
     setLoading(true);
     const docRef = doc(db, "Codes", "Invitation_tokens");
